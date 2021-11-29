@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.RegistroPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="primary">Indigo</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="10" >
+                <Label HeightRequest="110"  
+                          HorizontalOptions="FillAndExpand" 
+                          Text="GymApp" 
+                          BackgroundColor="{StaticResource primary}"
+                          TextColor="White" 
+                          FontSize="40" 
+                          HorizontalTextAlignment="Center"
+                          VerticalTextAlignment="Center"/>
+
+
+                <Entry  x:Name="NombresEntry"
+                         Margin="30,0,30,0" 
+                         HeightRequest="50" 
+                         Placeholder="Nombres"/>
+
+                <Entry x:Name="ApellidosEntry"
+                        Margin="30,0,30,0" 
+                         HeightRequest="50" 
+                         Placeholder="Apellidos"/>
+
+                <Entry  x:Name="IdentificacionEntry"
+                    Margin="30,0,30,0" 
+                         HeightRequest="50" 
+                         Placeholder="Identificación"
+                         Keyboard="Numeric"/>
+                
+                <Entry  x:Name="TelefonoEntry"
+                    Margin="30,0,30,0" 
+                         HeightRequest="50" 
+                         Placeholder="Telf."
+                         Keyboard="Numeric"/>
+                
+                <Entry  x:Name="EdadEntry"
+                    Margin="30,0,30,0" 
+                         HeightRequest="50" 
+                         Placeholder="Edad"
+                         Keyboard="Numeric"/>
+
+                <Entry  x:Name="SexoEntry"
+                    Margin="30,0,30,0" 
+                         HeightRequest="50" 
+                         Placeholder="Sexo"/>
+
+                <DatePicker x:Name="FechaNacimientoEntry"
+                            Margin="30,0,30,0" 
+                            HeightRequest="50" 
+                            MinimumDate="1980-01-01"/>
+
+                <Entry  x:Name="EmailEntry"
+                    Margin="30,0,30,0" 
+                         HeightRequest="50" 
+                         Placeholder="Email"
+                         Keyboard="Email"/>
+
+
+                <Entry x:Name="PasswordEntry"
+                    Margin="30,0,30,0" 
+                        HeightRequest="50" IsPassword="true"
+                        Placeholder="Password"/>
+
+
+                <Button Margin="20,0,20,0" 
+                         HeightRequest="50" 
+                         TextColor="White" 
+                         Text="Registrar"  
+                         BackgroundColor="Indigo"
+                         HorizontalOptions="FillAndExpand"
+                        Clicked="Button_Clicked"/>
+
+                <Label Margin="0,0,0,20" Text="I have an account" VerticalOptions="EndAndExpand"
+                        HorizontalOptions="Center" 
+                        TextColor="{StaticResource primary}"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
