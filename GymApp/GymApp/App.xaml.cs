@@ -13,7 +13,7 @@ namespace GymApp
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            //DependencyService.Register<MockDataStore>();
 
 
             if (Helpers.Settings.IsLoged)
@@ -22,7 +22,7 @@ namespace GymApp
             }
             else
             {
-                MainPage = new Login();
+                MainPage = new NavigationPage(new Login());
             }           
         }
 

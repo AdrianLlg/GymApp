@@ -25,9 +25,9 @@ namespace GymApp.Helpers
         }
         public static int RoleID
         {
-            get => AppSettings.GetValueOrDefault(nameof(roleID), 0);
+            get => AppSettings.GetValueOrDefault(nameof(RoleID), 0);
 
-            set => AppSettings.AddOrUpdateValue(nameof(roleID), value);
+            set => AppSettings.AddOrUpdateValue(nameof(RoleID), value);
         }
     }
 }

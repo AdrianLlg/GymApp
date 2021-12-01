@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.UserProfile">
+    <ContentPage.Resources>
+        <Color x:Key="LightPrimaryColor">WhiteSmoke</Color>
+        <Color x:Key="LightSecondaryColor">Black</Color>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" 
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
+            <StackLayout x:Name="principalStack">
+                <StackLayout HeightRequest="200">
+                    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Image
+                                        Source="gym_background.jpg"
+                                        Aspect="Fill"
+                                        HeightRequest="200"
+                                        AbsoluteLayout.LayoutFlags="All"
+                                        AbsoluteLayout.LayoutBounds="0,0,1,0.80"/>
+
+                        <Frame
+                                    Margin="15"
+                                    Padding="0"
+                                    BackgroundColor="LightGray"
+                                    CornerRadius="80"
+                                    HorizontalOptions="Center"
+                                    IsClippedToBounds="True"
+                                    VerticalOptions="Center"
+                                    WidthRequest="160"
+                                    HeightRequest="160"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    AbsoluteLayout.LayoutBounds="0.5,1,215,190">
+                            <Label
+                                    x:Name="imgUserPhoto"
+                                    HeightRequest="160"
+                                    Text="A"
+                                    WidthRequest="160" />
+                        </Frame>
+                        <!--<ImageButton
+                                x:Name="Plus_profilePic"
+                                Source="plus_perfil.png"
+                                IsVisible="false"
+                                WidthRequest="60"
+                                HeightRequest="60"
+                                Clicked="Plus_profilePic_Clicked"
+                                BackgroundColor="Transparent"
+                                AbsoluteLayout.LayoutFlags="PositionProportional"
+                                AbsoluteLayout.LayoutBounds="0.4,0.99,60,60"
+                                />-->
+                    </AbsoluteLayout>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" BackgroundColor="White" Margin="20,0,0,0">
+                    <Label
+                        Text="¡Bienvenido!"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        TextColor="Gray">                        
+                    </Label>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            TextColor="Black"
+                            Text="Usuario: "
+                            FontAttributes="Bold"
+                            FontSize="15">
+                        </Label>
+                        <Label
+                            x:Name="nameUser"
+                            TextColor="Black"
+                            FontSize="15">
+                        </Label>
+                        <Label
+                            x:Name="lastNameUser"
+                            TextColor="Black"
+                            FontSize="15">
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            TextColor="Black"
+                            Text="Identificación: "
+                            FontAttributes="Bold"
+                            FontSize="15">
+                        </Label>
+                        <Label
+                        x:Name="identificationUser"
+                        TextColor="Black"
+                            FontSize="15">
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            Text="Email: "
+                            FontAttributes="Bold"
+                            FontSize="15"
+                            TextColor="Black">                            
+                        </Label>
+                        <Label
+                        x:Name="emailUser"
+                        TextColor="Black"
+                            FontSize="15">
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            Text="Telefono: "
+                            FontSize="15"
+                            TextColor="Black"
+                            FontAttributes="Bold">
+                        </Label>
+                        <Label
+                        x:Name="phoneUser"
+                        TextColor="Black"
+                            FontSize="15">
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            Text="Edad: "
+                            FontSize="15"
+                            FontAttributes="Bold"
+                            TextColor="Black">
+                        </Label>
+                        <Label
+                        x:Name="ageUser"
+                        TextColor="Black"
+                            FontSize="15">
+                        </Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            Text="Fecha de Nacimiento: "
+                            FontSize="15"
+                            FontAttributes="Bold"
+                            TextColor="Black">
+                        </Label>
+                        <Label
+                        x:Name="BirthUser"
+                        TextColor="Black"
+                            FontSize="15">
+                        </Label>
+
+                    </StackLayout>
+                </StackLayout>                
+                
+                <BoxView x:Name="boxviewitem" HeightRequest="1" Color="Black" Margin="25,10,25,0" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

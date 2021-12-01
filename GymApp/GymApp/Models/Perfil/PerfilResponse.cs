@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GymApp.Models.Login
+namespace GymApp.Models.Perfil
 {
-    public class LoginResponse
+    public class PerfilResponse
     {
         public int ResponseCode { get; set; }
         public string ResponseMessage { get; set; }
-        public LoginResponseContent Content { get; set; }
-
+        public PerfilResponseContent contentIndex { get; set; }
     }
 }

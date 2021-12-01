@@ -59,7 +59,7 @@ namespace GymApp.Views
                 }
 
 
-                await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+                await Shell.Current.GoToAsync($"//{nameof(Login)}");
             }
             catch { }
         }
