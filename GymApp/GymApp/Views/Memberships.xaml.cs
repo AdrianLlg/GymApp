@@ -1,6 +1,9 @@
-﻿using GymAppV2.Helpers;
+﻿using GymApp.Models.Membresias;
+using GymAppV2.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,53 +16,75 @@ namespace GymApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Memberships : ContentPage
     {
+
+        public ObservableCollection<MembresiaContent> MembresiasCollection;
         public Memberships()
         {
             InitializeComponent();
             this.Title = "Membresías";
 
-            CargaLista();
+            LoadData();
         }
 
-        CardData cards = new CardData();
-
-        StackLayout cardstack = new StackLayout
+        public async void LoadData()
         {
-            Spacing = 15,
-            Padding = new Thickness(10),
-            VerticalOptions = LayoutOptions.StartAndExpand,
-        };
-        StackLayout shadowcardstack = new StackLayout
-        {
-            Spacing = 5,
-            Padding = new Thickness(5),
-            VerticalOptions = LayoutOptions.StartAndExpand,
-        };
-
-        public void CargaLista()
-        {
-            foreach (var card in cards)
+            try
             {
-                cardstack.Children.Add(new CardView(card));
-            }
-            this.BackgroundColor = Color.White;
-
-            Content = new ScrollView()
-            {
-                Content = new StackLayout()
+                DateTime hoy = DateTime.Now;
+                hoy = hoy.AddMonths(-5);
+                MembresiaRequest request = new MembresiaRequest()
                 {
 
-                    Spacing = 30,
-                    Padding = 25,
-                    Children =
+                    personaID = Helpers.Settings.PersonaID.ToString()
+                };
+
+                MembresiasCollection = Functions.Services.ConsultarMembresias(request);
+
+                if (MembresiasCollection != null)
+                {
+                    foreach (var item in MembresiasCollection)
                     {
+                        DateTime fechaInicio = DateTime.ParseExact(item.fechaInicioMembresia, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
+                        DateTime fechaFin = DateTime.ParseExact(item.fechaFinMembresia, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
+                        DateTime fechaPago = DateTime.ParseExact(item.fechaPago, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-                            cardstack,
-                            shadowcardstack
+                        item.fechaInicioMembresiaDate = fechaInicio;
+                        item.fechaFinMembresiaDate = fechaFin;
+                        item.fechaPagoMembresiaDate = fechaPago;
                     }
-                }
-            };
 
+                    var list = MembresiasCollection.Where(x => x.fechaInicioMembresiaDate > hoy.Date).ToList();
+
+                    MembresiasCollection = new ObservableCollection<MembresiaContent>(list);
+
+                    collectionView.ItemsSource = MembresiasCollection;
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Alerta", "Ha ocurrido un error.", "Ok");
+                return;
+            }
+
+
+        }
+
+        private async void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var obj = (ImageButton)sender;
+
+                var membership = (MembresiaContent)obj.BindingContext;               
+                
+                await Navigation.PushAsync(new MembershipDetails(membership));
+            }
+            catch(Exception ex)
+            {
+                await DisplayAlert("Alerta", "Ha ocurrido un error.", "Ok");
+                return;
+            }
+           
         }
     }
 }

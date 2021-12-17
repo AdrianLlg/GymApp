@@ -10,17 +10,17 @@
     <ContentPage.Content>
         <ScrollView RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" 
                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}">
-            <StackLayout x:Name="principalStack">
-                <StackLayout HeightRequest="200">
+            <StackLayout x:Name="principalStack" BackgroundColor="White">
+                <StackLayout HeightRequest="140">
                     <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Image
                                         Source="gym_background.jpg"
                                         Aspect="Fill"
                                         HeightRequest="200"
                                         AbsoluteLayout.LayoutFlags="All"
-                                        AbsoluteLayout.LayoutBounds="0,0,1,0.80"/>
+                                        AbsoluteLayout.LayoutBounds="0,0,1,1"/>
 
-                        <Frame
+                        <!--<Frame
                                     Margin="15"
                                     Padding="0"
                                     BackgroundColor="LightGray"
@@ -37,7 +37,7 @@
                                     HeightRequest="160"
                                     Text="A"
                                     WidthRequest="160" />
-                        </Frame>
+                        </Frame>-->
                         <!--<ImageButton
                                 x:Name="Plus_profilePic"
                                 Source="plus_perfil.png"
@@ -51,27 +51,30 @@
                                 />-->
                     </AbsoluteLayout>
                 </StackLayout>
-                <StackLayout Orientation="Vertical" BackgroundColor="White" Margin="20,0,0,0">
+                <StackLayout Orientation="Vertical" BackgroundColor="White" Margin="20">
                     <Label
-                        Text="¡Bienvenido!"
+                        Text="¡Bienvenid@!"
                         FontAttributes="Bold"
-                        FontSize="20"
-                        TextColor="Gray">                        
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        TextColor="Coral">                        
+                    </Label>
+                    <Label
+                        Margin="0,20"
+                        Text="Tu Información:"
+                        FontAttributes="Bold"
+                        FontSize="20">
+                        
                     </Label>
                     <StackLayout Orientation="Horizontal">
                         <Label
                             TextColor="Black"
-                            Text="Usuario: "
+                            Text="Nombre/Apellido: "
                             FontAttributes="Bold"
                             FontSize="15">
                         </Label>
                         <Label
                             x:Name="nameUser"
-                            TextColor="Black"
-                            FontSize="15">
-                        </Label>
-                        <Label
-                            x:Name="lastNameUser"
                             TextColor="Black"
                             FontSize="15">
                         </Label>

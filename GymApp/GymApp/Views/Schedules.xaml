@@ -1,12 +1,117 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GymApp.Views.Schedules">
+             x:Class="GymApp.Views.Schedules"
+             xmlns:plugin="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms Schedules!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="White">
+            <ScrollView x:Name="scrCalendar">
+                <plugin:Calendar
+                    x:Name="calendar"
+                    Padding="10,0"
+                    ArrowsColor="Black"
+                    BackgroundColor="White"
+                    DaysTitleColor="Black"
+                    DeselectedDayTextColor="Black"
+                    EventIndicatorColor="Coral"
+                    EventIndicatorSelectedColor="Transparent"
+                    HorizontalOptions="FillAndExpand"
+                    MonthLabelColor="Black"
+                    SelectedDateColor="Coral"
+                    SelectedDayBackgroundColor="Coral"
+                    SelectedDayTextColor="Black"
+                    TodayFillColor="PaleTurquoise"
+                    SelectedTodayTextColor="Black"
+                    TodayTextColor="Black"
+                    TodayOutlineColor="PaleTurquoise"
+                    VerticalOptions="FillAndExpand">
+                    
+                    <plugin:Calendar.EventTemplate>
+                        <DataTemplate>
+                            <Frame
+                                BorderColor="Coral"
+                                Margin="15"
+                                Padding="1"
+                                BackgroundColor="White"
+                                HeightRequest="135"
+                                >
+                                <StackLayout>
+                                    <Label
+                                            Padding="5"
+                                            FontAttributes="Bold"
+                                            FontSize="16"
+                                            Text="{Binding disciplina}"
+                                            TextColor="Black"
+                                            VerticalOptions="Center" />
+                                    
+                                    <BoxView HeightRequest="1" Color="Coral" Margin="0" />
+                                    <Grid
+                                        x:Name="gridContent"      
+                                        RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="60" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackLayout Grid.Column="0" Grid.Row="0" Padding="5">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="15"
+                                                    Text="Instructor:"
+                                                    TextColor="Black" />
+                                                <Label
+                                                    Margin="0,0,0,0"
+                                                    FontSize="15"
+                                                    Text="Nombre del instructor"
+                                                    TextColor="Black" />
+                                            </StackLayout>
+                                            <StackLayout
+                                            Orientation="Horizontal"
+                                            Spacing="0">
+
+                                                <Label
+                                                FontAttributes="Bold"
+                                                FontSize="15"
+                                                Text="Hora: "
+                                                TextColor="Black" />
+                                                <Label
+                                                FontSize="15"
+                                                Text="{Binding horaFormatoString}"
+                                                TextColor="Black" />
+                                            </StackLayout>
+                                            <StackLayout
+                                                Orientation="Horizontal"
+                                                Spacing="0">
+                                                <Label
+                                                FontAttributes="Bold"
+                                                FontSize="15"
+                                                Text="Asistentes: "
+                                                TextColor="Black" />
+                                                <Label
+                                                FontSize="15"
+                                                Text="{Binding cupos}"
+                                                TextColor="Black" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <ImageButton 
+                                            Grid.Column="1"
+                                            Margin="0,0,10,10"
+                                            Source="rightArrow.png"
+                                            BackgroundColor="Transparent"
+                                            Clicked="ImageButton_Clicked">                                                
+                                        </ImageButton>
+                                    </Grid>
+                                </StackLayout>
+                                
+                            </Frame>
+                        </DataTemplate>
+                    </plugin:Calendar.EventTemplate>
+                </plugin:Calendar>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

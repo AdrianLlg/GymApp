@@ -16,5 +16,10 @@ namespace GymApp.Views
         {
             InitializeComponent();
         }
+
+        private async void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            await(Application.Current as App).LogOut();
+        }
     }
 }

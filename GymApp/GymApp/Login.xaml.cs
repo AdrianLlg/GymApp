@@ -16,6 +16,7 @@ namespace GymApp
         public Login()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         private async void Handle_Clicked(object sender, System.EventArgs e)
@@ -27,7 +28,6 @@ namespace GymApp
         {
             try
             {
-
                 if (string.IsNullOrEmpty(EmailEntry.Text))
                 {
                    await DisplayAlert("Alerta", "Ingrese su Email", "Ok");
@@ -40,43 +40,25 @@ namespace GymApp
                     return;
                 }
 
-                if (EmailEntry.Text == "admin")
-                {
-                    Helpers.Settings.IsLoged = true;
-                    Helpers.Settings.PersonaID = 1;
-                    Helpers.Settings.RoleID = 3;
+                var email = EmailEntry.Text;
+                var password = PasswordEntry.Text;
 
-                    Application.Current.MainPage = new AppShell();
+                var resp = (Application.Current as App).LogIn(email, password);
+
+
+                if (resp == false)
+                {
+                    await DisplayAlert("Alerta", "Credenciales incorrectas, por favor, verifique su correo o contraseña.", "Ok");
+                    await (Application.Current as App).LogOut();
                 }
 
-                var emailEntry = EmailEntry.Text;
-                var passwordEntry = PasswordEntry.Text;
 
-                Models.Login.LoginRequest item = new Models.Login.LoginRequest()
-                {
-                    email = emailEntry,
-                    password = passwordEntry
-                };
-
-                Models.Login.LoginResponseContent response = Functions.Services.LoginUser(item);
-
-                if (response != null)
-                {
-                    Helpers.Settings.IsLoged = true;
-                    Helpers.Settings.PersonaID = response.personaID;
-                    Helpers.Settings.RoleID = response.role;
-
-                    Application.Current.MainPage = new AppShell();
-                }
-                else
-                {
-                    Helpers.Settings.IsLoged = false;
-                    await DisplayAlert("Alerta", "Credenciales Incorrectas.", "Ok");
-                }
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Alerta", "Fallo en el Login", "Ok");
+
+                await DisplayAlert("Alerta", "Ocurrió un error al realizar Log In, intentelo nuevamente mas tarde", "Ok");
+                await (Application.Current as App).LogOut();
             }
         }
         

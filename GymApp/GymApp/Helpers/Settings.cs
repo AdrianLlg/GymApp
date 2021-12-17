@@ -29,5 +29,47 @@ namespace GymApp.Helpers
 
             set => AppSettings.AddOrUpdateValue(nameof(RoleID), value);
         }
+
+        public static string NombreCompleto
+        {
+            get => AppSettings.GetValueOrDefault(nameof(NombreCompleto), string.Empty);
+
+            set => AppSettings.AddOrUpdateValue(nameof(NombreCompleto), value);
+        }
+
+        public static string Celular
+        {
+            get => AppSettings.GetValueOrDefault(nameof(Celular), string.Empty);
+
+            set => AppSettings.AddOrUpdateValue(nameof(Celular), value);
+        }
+
+        public static string Cedula
+        {
+            get => AppSettings.GetValueOrDefault(nameof(Cedula), string.Empty);
+
+            set => AppSettings.AddOrUpdateValue(nameof(Cedula), value);
+        }
+
+        public static string Correo
+        {
+            get => AppSettings.GetValueOrDefault(nameof(Correo), string.Empty);
+
+            set => AppSettings.AddOrUpdateValue(nameof(Correo), value);
+        }
+
+        public static string Edad
+        {
+            get => AppSettings.GetValueOrDefault(nameof(Edad), string.Empty);
+
+            set => AppSettings.AddOrUpdateValue(nameof(Edad), value);
+        }
+
+        public static string FechaNacimiento
+        {
+            get => AppSettings.GetValueOrDefault(nameof(FechaNacimiento), string.Empty);
+
+            set => AppSettings.AddOrUpdateValue(nameof(FechaNacimiento), value);
+        }
     }
 }

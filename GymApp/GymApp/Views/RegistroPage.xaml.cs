@@ -19,32 +19,94 @@ namespace GymApp.Views
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            var nombre = NombresEntry.Text;
-            var apellidos = ApellidosEntry.Text;
-            var identificacion = IdentificacionEntry.Text.ToString();
-            var email = EmailEntry.Text;
-            var telefono = TelefonoEntry.Text;
-            var edad = EdadEntry.Text;
-            var fechanacimiento = FechaNacimientoEntry.Date.ToString("yyyy-mm-dd");
-            var sexo = SexoEntry.Text;
-            var password = PasswordEntry.Text;
+            var picker = string.Empty;
+            string[] mail;
 
             try
             {
+                picker = pickerGenere.SelectedItem.ToString();
+
+                if (picker == "Hombre")
+                {
+                    picker = "H";
+                }
+                if (picker == "Mujer")
+                {
+                    picker = "M";
+                }
+                if (picker == "Otros")
+                {
+                    picker = "O";
+                }
+            }
+            catch
+            {
+                picker = string.Empty;
+            }
+            
+
+            if (string.IsNullOrEmpty(NombresEntry.Text) || string.IsNullOrEmpty(ApellidosEntry.Text)
+                || string.IsNullOrEmpty(IdentificacionEntry.Text) || string.IsNullOrEmpty(EmailEntry.Text)
+                || string.IsNullOrEmpty(TelefonoEntry.Text) || string.IsNullOrEmpty(picker))
+            {
+                await DisplayAlert("Alerta", "Por favor, ingrese todos los campos requeridos.", "Ok");
+                return;
+            }
+
+            if(IdentificacionEntry.Text.Length < 10 || IdentificacionEntry.Text.Length > 10)
+            {
+                await DisplayAlert("Alerta", "Por favor, ingrese una cédula de identidad válida", "Ok");
+                return;
+            }
+
+            if (TelefonoEntry.Text.Length < 10 || TelefonoEntry.Text.Length > 10)
+            {
+                await DisplayAlert("Alerta", "Por favor, ingrese un teléfono válido", "Ok");
+                return;
+            }
+
+            if (FechaNacimientoEntry.Date > DateTime.Now || FechaNacimientoEntry.Date > DateTime.Now.AddYears(-15))
+            {
+                await DisplayAlert("Alerta", "Por favor, ingrese una fecha de nacimiento válida", "Ok");
+                return;
+            }
+
+            try
+            {
+                mail = EmailEntry.Text.Split('@');
+
+                if (!mail[1].Contains(".com"))
+                {
+                    await DisplayAlert("Alerta", "Por favor, ingrese un correo electrónico válido", "Ok");
+                    return;
+                }
+            }
+            catch
+            {
+                await DisplayAlert("Alerta", "Por favor, ingrese un correo electrónico válido", "Ok");
+                return;
+            }
+
+            try
+            {
+                var nombre = NombresEntry.Text;
+                var apellidos = ApellidosEntry.Text;
+                var identificacion = IdentificacionEntry.Text.ToString();
+                var email = EmailEntry.Text;
+                var telefono = TelefonoEntry.Text;
+                var fechanacimiento = FechaNacimientoEntry.Date.ToString("yyyy-MM-dd");
 
                 Models.RegistroPersona.RegistroPersonaRequest item = new Models.RegistroPersona.RegistroPersonaRequest()
                 {
+                    flujoID = 1,
                     rolePID = "3",
-                    Nombres = nombre,
-                    Apellidos = apellidos,
-                    Identificacion = identificacion,
-                    Email = email,
-                    Telefono = telefono,
-                    Edad = edad,
-                    Sexo = sexo,
-                    FechaNacimiento = fechanacimiento,
-                    Password = password
-
+                    nombres = nombre,
+                    apellidos = apellidos,
+                    identificacion = identificacion,
+                    email = email,
+                    telefono = telefono,
+                    sexo = picker,
+                    fechaNacimiento = fechanacimiento
                 };
 
                 bool response = Functions.Services.RegistroUsuario(item);
@@ -52,16 +114,22 @@ namespace GymApp.Views
                 if (response)
                 {
                     await DisplayAlert("Alerta", "Registro exitoso", "Ok");
+                    await Navigation.PopAsync();
                 }
                 else
                 {
                     await DisplayAlert("Alerta", "Registro fallido", "Ok");
                 }
 
-
-                await Shell.Current.GoToAsync($"//{nameof(Login)}");
             }
-            catch { }
+            catch {
+                await DisplayAlert("Alerta", "Registro fallido", "Ok");
+            }
+        }
+
+        private async void AlreadyAccountClick(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
         }
     }
 }

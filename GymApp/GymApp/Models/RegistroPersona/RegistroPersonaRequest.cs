@@ -7,16 +7,14 @@ namespace GymApp.Models.RegistroPersona
 
     public class RegistroPersonaRequest
     {
+        public int flujoID { get; set; }
         public string rolePID { get; set; }
-        public string Nombres { get; set; }
-        public string Apellidos { get; set; }
-        public string Identificacion { get; set; }
-        public string Email { get; set; }
-        public string Telefono { get; set; }
-        public string Edad { get; set; }
-        public string Sexo { get; set; }
-        public string FechaNacimiento { get; set; }
-        public string Password { get; set; }
-
+        public string nombres { get; set; }
+        public string apellidos { get; set; }
+        public string identificacion { get; set; }
+        public string email { get; set; }
+        public string telefono { get; set; }
+        public string sexo { get; set; }
+        public string fechaNacimiento { get; set; }
     }
 }

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.MembreshipRequest">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Label 
+                Text="Solicitud de Activación Membresía"
+                FontSize="20"
+                FontAttributes="Bold"
+                TextColor="Coral"
+                VerticalOptions="Center" 
+                HorizontalOptions="Start" />
+
+            <Label
+                Text="Por favor, seleccione una de las siguientes opciones para adjuntar un comprobante de su pago: "
+                FontSize="15">
+
+            </Label>
+            
+            <Grid 
+                    HorizontalOptions="Center"
+                    WidthRequest="150" 
+                Margin="0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Cámara"
+                    FontSize="13"
+                    HorizontalOptions="Center"
+                    TextColor="Black">                    
+                </Label>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="Galería"
+                    FontSize="13"
+                    HorizontalOptions="Center"
+                    TextColor="Black">
+                </Label>
+
+                <ImageButton
+                    HorizontalOptions="Center"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    Source="icon_camera.png"
+                    BackgroundColor="Transparent"
+                    x:Name="cameraButton">
+                    
+                </ImageButton>
+
+                <ImageButton
+                    
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    Source="icon_gallery.png"
+                    BackgroundColor="Transparent"
+                    x:Name="galleryButton">
+
+                </ImageButton>
+            </Grid>
+            
+            <Image x:Name="PhotoImage" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

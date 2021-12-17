@@ -9,7 +9,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Spacing="10" >
+            <StackLayout Spacing="10">
                 <Label HeightRequest="110"  
                           HorizontalOptions="FillAndExpand" 
                           Text="GymApp" 
@@ -18,60 +18,44 @@
                           FontSize="40" 
                           HorizontalTextAlignment="Center"
                           VerticalTextAlignment="Center"/>
-
-
-                <Entry  x:Name="NombresEntry"
-                         Margin="30,0,30,0" 
+                
+                <StackLayout Margin="30,0,30,0">
+                    <Entry  x:Name="NombresEntry"
                          HeightRequest="50" 
                          Placeholder="Nombres"/>
 
-                <Entry x:Name="ApellidosEntry"
-                        Margin="30,0,30,0" 
+                    <Entry x:Name="ApellidosEntry"
                          HeightRequest="50" 
                          Placeholder="Apellidos"/>
 
-                <Entry  x:Name="IdentificacionEntry"
-                    Margin="30,0,30,0" 
+                    <Entry  x:Name="IdentificacionEntry"
                          HeightRequest="50" 
                          Placeholder="Identificación"
                          Keyboard="Numeric"/>
-                
-                <Entry  x:Name="TelefonoEntry"
-                    Margin="30,0,30,0" 
+
+                    <Entry  x:Name="TelefonoEntry"
                          HeightRequest="50" 
-                         Placeholder="Telf."
-                         Keyboard="Numeric"/>
-                
-                <Entry  x:Name="EdadEntry"
-                    Margin="30,0,30,0" 
-                         HeightRequest="50" 
-                         Placeholder="Edad"
+                         Placeholder="Teléfono Celular (09...)"
                          Keyboard="Numeric"/>
 
-                <Entry  x:Name="SexoEntry"
-                    Margin="30,0,30,0" 
-                         HeightRequest="50" 
-                         Placeholder="Sexo"/>
+                    <Picker x:Name="pickerGenere" Title="Selecciona una opción" TitleColor="Black">
+                        <Picker.Items>
+                            <x:String>Hombre</x:String>
+                            <x:String>Mujer</x:String>
+                            <x:String>Otros</x:String>
+                        </Picker.Items>
+                    </Picker>
 
-                <DatePicker x:Name="FechaNacimientoEntry"
-                            Margin="30,0,30,0" 
+                    <DatePicker x:Name="FechaNacimientoEntry"
                             HeightRequest="50" 
                             MinimumDate="1980-01-01"/>
 
-                <Entry  x:Name="EmailEntry"
-                    Margin="30,0,30,0" 
+                    <Entry  x:Name="EmailEntry"
                          HeightRequest="50" 
                          Placeholder="Email"
                          Keyboard="Email"/>
 
-
-                <Entry x:Name="PasswordEntry"
-                    Margin="30,0,30,0" 
-                        HeightRequest="50" IsPassword="true"
-                        Placeholder="Password"/>
-
-
-                <Button Margin="20,0,20,0" 
+                    <Button Margin="20" 
                          HeightRequest="50" 
                          TextColor="White" 
                          Text="Registrar"  
@@ -79,9 +63,17 @@
                          HorizontalOptions="FillAndExpand"
                         Clicked="Button_Clicked"/>
 
-                <Label Margin="0,0,0,20" Text="I have an account" VerticalOptions="EndAndExpand"
+                    <Label Text="Ya tengo una cuenta" VerticalOptions="EndAndExpand"
                         HorizontalOptions="Center" 
-                        TextColor="{StaticResource primary}"/>
+                        TextColor="{StaticResource primary}">
+
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="AlreadyAccountClick"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
+                
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

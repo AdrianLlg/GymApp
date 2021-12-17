@@ -1,6 +1,7 @@
 ﻿using GymApp.Models.Login;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace GymApp.Models.Membresias
@@ -9,6 +10,6 @@ namespace GymApp.Models.Membresias
     {
         public int responseCode { get; set; }
         public string responseMessage { get; set; }
-        public List<MembresiaContent> content { get; set; }
+        public ObservableCollection<MembresiaContent> content { get; set; }
     }
 }

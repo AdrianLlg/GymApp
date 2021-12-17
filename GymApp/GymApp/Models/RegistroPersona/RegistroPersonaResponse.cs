@@ -8,7 +8,7 @@ namespace GymApp.Models.RegistroPersona
     {
         public int responseCode { get; set; }
         public string responseMessage { get; set; }
-        public bool content { get; set; }
+        public bool contentCreate { get; set; }
 
     }
 }

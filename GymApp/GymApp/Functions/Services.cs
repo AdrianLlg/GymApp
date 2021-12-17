@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using GymApp.Models;
+using System.Collections.ObjectModel;
 
 namespace GymApp.Functions
 {
@@ -29,7 +30,7 @@ namespace GymApp.Functions
 
                 IRestResponse response = client.Execute(request);
 
-                res = JsonConvert.DeserializeObject<Models.RegistroPersona.RegistroPersonaResponse>(response.Content).content;
+                res = JsonConvert.DeserializeObject<Models.RegistroPersona.RegistroPersonaResponse>(response.Content).contentCreate;
 
                 return res;
             }
@@ -66,9 +67,9 @@ namespace GymApp.Functions
                 return null;
             }
         }
-        public static List<Models.Membresias.MembresiaContent> ConsultarMembresia(Models.Membresias.MembresiaRequest value)
+        public static ObservableCollection<Models.Membresias.MembresiaContent> ConsultarMembresias(Models.Membresias.MembresiaRequest value)
         {
-            List<Models.Membresias.MembresiaContent> res = new List<Models.Membresias.MembresiaContent>();
+            ObservableCollection<Models.Membresias.MembresiaContent> res = new ObservableCollection<Models.Membresias.MembresiaContent>();
 
             try
             {
@@ -91,7 +92,7 @@ namespace GymApp.Functions
             }
             catch (Exception ex)
             {
-                return res;
+                return null;
             }
         }
 
@@ -121,6 +122,100 @@ namespace GymApp.Functions
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        public static ObservableCollection<Models.Horarios.HorariosDeportistaContent> ConsultaHorarios(Models.Horarios.HorariosDeportistaRequest value)
+        {
+            ObservableCollection<Models.Horarios.HorariosDeportistaContent> res = new ObservableCollection<Models.Horarios.HorariosDeportistaContent>();
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiConsultaHorariosDeportista)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                if (!string.IsNullOrEmpty(response.Content))
+                {
+                    res = JsonConvert.DeserializeObject<Models.Horarios.HorariosDeportistaResponse>(response.Content).Content;
+                }
+                else
+                {
+                    return null;
+                }                
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public static bool InscripcionSesion(Models.InscripcionSesion.InscripcionSesionRequest value)
+        {
+            bool res = false;
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiInscripcionUsuarioSesion)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.InscripcionSesion.InscripcionSesionResponse>(response.Content).Content;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public static bool RegistroSolicitudMembresia(Models.RegistroPersona.RegistroPersonaRequest value)
+        {
+            bool res = false;
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiRegistro)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.RegistroPersona.RegistroPersonaResponse>(response.Content).contentCreate;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }

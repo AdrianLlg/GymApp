@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.MembershipDetails">
+    <ContentPage.Content>
+        <StackLayout Margin="20" Orientation="Vertical">
+            <Label
+                Margin="0,10"
+                Text="Detalles de la membresía:"
+                FontSize="20"
+                FontAttributes="Bold"
+                >
+            </Label>
+            <Label
+                    Text="Nombre Membresía:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    TextColor="Black">                    
+                </Label>
+            <Label
+                    x:Name="nombreMembLabel"
+                    FontSize="14"
+                    TextColor="Black">
+            </Label>
+            <Label
+                    Text="Precio Membresía:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    TextColor="Black">
+                </Label>
+            <Label
+                    x:Name="precioMembLabel"
+                    FontSize="14"
+                    TextColor="Black">
+            </Label>
+            <Label
+                    Text="Duración Membresía:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    TextColor="Black">
+                </Label>
+            <Label
+                    x:Name="periodicidadMembLabel"
+                    FontSize="14"
+                    TextColor="Black">
+            </Label>
+            <Label
+                    Text="Fecha de Inicio de la Membresía:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    TextColor="Black">
+                </Label>
+                <Label
+                    x:Name="fechaInicioMembLabel"
+                    FontSize="14"
+                    TextColor="Black">
+                </Label>
+            
+                <Label
+                    Text="Fecha de Fin de la Membresía:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    TextColor="Black">
+                </Label>
+                <Label
+                    x:Name="fechaFinMembLabel"
+                    FontSize="14"
+                    TextColor="Black">
+                </Label>
+           
+                <Label
+                    Text="Fecha de Pago de la Membresía:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    TextColor="Black">
+                </Label>
+            <Label
+                    x:Name="fechaPagoMembLabel"
+                    FontSize="14"
+                    TextColor="Black">
+            </Label>
+
+            <Button
+                Margin="0,30"
+                Text="Solicitar Activacion/Renovacion"
+                WidthRequest="300"
+                HorizontalOptions="Center"
+                HeightRequest="50"
+                BackgroundColor="Coral"
+                Clicked="Button_Clicked">
+                
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
