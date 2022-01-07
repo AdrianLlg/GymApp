@@ -17,6 +17,8 @@ namespace GymApp.Views
         {
             InitializeComponent();
             LoadDataView();
+
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
 
@@ -32,6 +34,7 @@ namespace GymApp.Views
             if (response != null)
             {
                 nameUser.Text = response.nombres + " " + response.apellidos;
+                Helpers.Settings.NombrePersona = response.nombres;
                 Helpers.Settings.NombreCompleto = response.nombres + " " + response.apellidos;
 
                 phoneUser.Text = response.telefono;
@@ -54,6 +57,16 @@ namespace GymApp.Views
                 await DisplayAlert("Alerta","Ha ocurrido un error al consultar la información del perfil.","Ok");
             }
 
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new UserPersonalProgress());
+        }
+
+        private async void Button_Clicked_1(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SessionsHistory());
         }
     }
 }

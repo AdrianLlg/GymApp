@@ -72,16 +72,52 @@
                         TextColor="Black">
 
                 </Label>
+                <Label
+                    x:Name="conditionsLabel"
+                    Text="* Antes de inscribirte, recuerda que tendras un numero limitado de veces para cancelar tu inscripcion. Recuerda tambien que solo podras cancelar una sesion si aun no excede la restriccion horaria para cancelar, para mas detalles de la restriccion horaria, por favor consultar con el administrador del establecimiento. *"
+                    HorizontalOptions="Center"
+                    TextColor="Gray"
+                    FontSize="12"
+                    HorizontalTextAlignment="Center"
+                    Margin="0,20,0,0">
+                    
+                </Label>
+
+                <Button
+                    x:Name="HasSpecialResources"
+                    BackgroundColor="Coral"
+                    TextColor="White"
+                    WidthRequest="150"
+                    HeightRequest="70"
+                    Margin="0,30"
+                    HorizontalOptions="Center"
+                    Text = "Selecciona un lugar"
+                    Clicked="Button_Clicked">
+
+                </Button>
                 <Button
                     x:Name="InscripcionButton"
                     BackgroundColor="Coral"
                     TextColor="White"
+                    Text = "Inscribirme"
                     WidthRequest="150"
                     Margin="0,30"
                     HeightRequest="50"
                     HorizontalOptions="Center"
                     Clicked="Button_Clicked">
                     
+                </Button>
+                <Button
+                    x:Name="QuitarInscripcionButton"
+                    BackgroundColor="Coral"
+                    TextColor="White"
+                    WidthRequest="150"
+                    HeightRequest="65"
+                    Margin="0,30"
+                    HorizontalOptions="Center"
+                    Text = "Quitar Inscripcion"
+                    Clicked="Button_Clicked2">
+
                 </Button>
             </StackLayout>
         </StackLayout>

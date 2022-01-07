@@ -8,7 +8,8 @@ namespace GymApp.Models.InscripcionSesion
     {
         public int eventoID { get; set; }
         public int personaID { get; set; }
-
         public string estado { get; set; }
+        public int recursoAsignado { get; set; }
+        public bool recursosEvento { get; set; }
     }
 }

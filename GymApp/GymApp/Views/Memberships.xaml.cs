@@ -22,7 +22,7 @@ namespace GymApp.Views
         {
             InitializeComponent();
             this.Title = "Membresías";
-
+            NavigationPage.SetHasNavigationBar(this, false);
             LoadData();
         }
 
@@ -32,6 +32,7 @@ namespace GymApp.Views
             {
                 DateTime hoy = DateTime.Now;
                 hoy = hoy.AddMonths(-5);
+
                 MembresiaRequest request = new MembresiaRequest()
                 {
 
@@ -52,6 +53,13 @@ namespace GymApp.Views
                         item.fechaFinMembresiaDate = fechaFin;
                         item.fechaPagoMembresiaDate = fechaPago;
                     }
+
+                    #region Codigo para almacenar las membresias activas actuales en una variable global
+
+                    var itemsToFill = MembresiasCollection.Where(x => x.estado == "A").ToList();
+                    Helpers.Settings.MembresiasActivas = itemsToFill;
+
+                    #endregion
 
                     var list = MembresiasCollection.Where(x => x.fechaInicioMembresiaDate > hoy.Date).ToList();
 
@@ -84,7 +92,7 @@ namespace GymApp.Views
                 await DisplayAlert("Alerta", "Ha ocurrido un error.", "Ok");
                 return;
             }
-           
+
         }
     }
 }

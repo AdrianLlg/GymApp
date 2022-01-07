@@ -24,5 +24,6 @@ namespace GymApp.Models.Membresias
         public DateTime fechaInicioMembresiaDate { get; set; }
         public DateTime fechaFinMembresiaDate { get; set; }
         public DateTime fechaPagoMembresiaDate { get; set; }
+        public List<DisciplinasMembresiasPersona> disciplinasMemb { get; set; }
     }
 }

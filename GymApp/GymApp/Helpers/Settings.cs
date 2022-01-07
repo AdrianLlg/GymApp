@@ -1,7 +1,9 @@
-﻿using Plugin.Settings;
+﻿using GymApp.Models.Membresias;
+using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace GymApp.Helpers
@@ -37,6 +39,14 @@ namespace GymApp.Helpers
             set => AppSettings.AddOrUpdateValue(nameof(NombreCompleto), value);
         }
 
+        public static string NombrePersona
+        {
+            get => AppSettings.GetValueOrDefault(nameof(NombrePersona), string.Empty);
+
+            set => AppSettings.AddOrUpdateValue(nameof(NombrePersona), value);
+        }
+
+
         public static string Celular
         {
             get => AppSettings.GetValueOrDefault(nameof(Celular), string.Empty);
@@ -71,5 +81,8 @@ namespace GymApp.Helpers
 
             set => AppSettings.AddOrUpdateValue(nameof(FechaNacimiento), value);
         }
+
+
+        public static List<MembresiaContent> MembresiasActivas = new List<MembresiaContent>();
     }
 }

@@ -45,7 +45,7 @@
                     TextColor="Black">
             </Label>
             <Label
-                    Text="Fecha de Inicio de la Membresía:"
+                    Text="Inicio de la Membresía:"
                     FontSize="14"
                     FontAttributes="Bold"
                     TextColor="Black">
@@ -57,7 +57,7 @@
                 </Label>
             
                 <Label
-                    Text="Fecha de Fin de la Membresía:"
+                    Text="Fin de la Membresía:"
                     FontSize="14"
                     FontAttributes="Bold"
                     TextColor="Black">
@@ -80,6 +80,71 @@
                     TextColor="Black">
             </Label>
 
+            
+            <CollectionView
+                x:Name="collectionViewDisciplines"
+                         ItemsLayout="VerticalGrid, 1"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame 
+                                BorderColor="Coral"
+                                CornerRadius="5"
+                                BackgroundColor="White"
+                                HasShadow="True"
+                                Padding="10"
+                                Margin="10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label 
+                                        Grid.Row="0"
+                                        Text="{Binding nombreDisciplina}" 
+                                        FontAttributes="Bold"
+                                        LineBreakMode="TailTruncation"
+                                        VerticalOptions="Center"
+                                        Margin="5,0,0,0"/>
+
+                                    <StackLayout Grid.Row="1" Orientation="Vertical">
+
+                                        <BoxView Grid.Column="0" x:Name="boxviewitem" HeightRequest="1" Color="Gray"  />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                            Text="Sesiones Tomadas: "
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding numClasesTomadas}"
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                            Text="Sesiones Restantes: "
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding numClases}"
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
             <Button
                 Margin="0,30"
                 Text="Solicitar Activacion/Renovacion"
@@ -87,8 +152,9 @@
                 HorizontalOptions="Center"
                 HeightRequest="50"
                 BackgroundColor="Coral"
-                Clicked="Button_Clicked">
-                
+                Clicked="Button_Clicked"
+                x:Name="solButton">
+
             </Button>
         </StackLayout>
     </ContentPage.Content>

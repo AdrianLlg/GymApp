@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.UserPersonalProgress">
+    <ContentPage.Content>
+        <StackLayout Margin="20" Orientation="Vertical">
+            <Label
+                Text="Detalle Personal:"
+                Margin="0,10"
+                FontSize="20"
+                FontAttributes="Bold"
+                TextColor="Coral"
+                >
+            </Label>
+            <Label
+                Text="Mesotipo:"
+                FontSize="18"
+                FontAttributes="Bold"
+                TextColor="Black"
+                >
+            </Label>
+            
+            <Label
+                x:Name="mesotipoLabel"
+                FontSize="17"
+                TextColor="Black"
+                >
+            </Label>
+            <Label
+                Text="Nivel Actual de Actividad Física:"
+                FontSize="18"
+                FontAttributes="Bold"
+                TextColor="Black"
+                >
+            </Label>
+
+            <Label
+                x:Name="lvlActividadLabel"
+                FontSize="17"
+                TextColor="Black"
+                >
+            </Label>
+
+            <Label
+                Text="Antecendentes Médicos:"
+                FontSize="18"
+                FontAttributes="Bold"
+                TextColor="Black"
+                >
+            </Label>
+
+            <Label
+                x:Name="antecendentesLabel"
+                FontSize="17"
+                TextColor="Black"
+                >
+            </Label>
+
+            <Label
+                Text="Alergias:"
+                FontSize="18"
+                FontAttributes="Bold"
+                TextColor="Black"
+                >
+            </Label>
+
+            <Label
+                x:Name="alergiasLabel"
+                FontSize="17"
+                TextColor="Black"
+                >
+            </Label>
+            <Label
+                Text="Enfermedades:"
+                FontSize="18"
+                FontAttributes="Bold"
+                TextColor="Black"
+                >
+            </Label>
+
+            <Label
+                x:Name="enfermedadesLabel"
+                FontSize="17"
+                TextColor="Black"
+                >
+            </Label>
+
+            <Button
+                Text="Ver detalle por disciplina"
+                HeightRequest="75"
+                WidthRequest="175"
+                IsVisible="false"
+                HorizontalOptions="Center"
+                BackgroundColor="Coral"
+                x:Name="disciplinaButton"
+                Clicked="disciplinaButton_Clicked">
+                
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

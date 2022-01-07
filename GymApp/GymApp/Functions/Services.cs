@@ -161,9 +161,9 @@ namespace GymApp.Functions
             }
         }
 
-        public static bool InscripcionSesion(Models.InscripcionSesion.InscripcionSesionRequest value)
+        public static Models.InscripcionSesion.InscripcionSesionResponse InscripcionSesion(Models.InscripcionSesion.InscripcionSesionRequest value)
         {
-            bool res = false;
+            Models.InscripcionSesion.InscripcionSesionResponse res = new Models.InscripcionSesion.InscripcionSesionResponse();
 
             try
             {
@@ -180,13 +180,13 @@ namespace GymApp.Functions
 
                 IRestResponse response = client.Execute(request);
 
-                res = JsonConvert.DeserializeObject<Models.InscripcionSesion.InscripcionSesionResponse>(response.Content).Content;
+                res = JsonConvert.DeserializeObject<Models.InscripcionSesion.InscripcionSesionResponse>(response.Content);
 
                 return res;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
 
@@ -216,6 +216,178 @@ namespace GymApp.Functions
             catch (Exception ex)
             {
                 return false;
+            }
+        }
+
+        public static ObservableCollection<Models.SesionesAgendadas.SesionesAgendadasContent> ConsultarSesionesAgendadas(Models.SesionesAgendadas.SesionesAgendadasRequest value)
+        {
+            ObservableCollection<Models.SesionesAgendadas.SesionesAgendadasContent> res = new ObservableCollection<Models.SesionesAgendadas.SesionesAgendadasContent>();
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiSesionesAgendadas)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.SesionesAgendadas.SesionesAgendadasResponse>(response.Content).Content;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+        public static Models.SolicitudMembresia.SolicitudMembresiaResponse SolicitudMembresia(Models.SolicitudMembresia.SolicitudMembresiaRequest value)
+        {
+            Models.SolicitudMembresia.SolicitudMembresiaResponse res = new Models.SolicitudMembresia.SolicitudMembresiaResponse();
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiRenovacionMembresiaUsuario)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.SolicitudMembresia.SolicitudMembresiaResponse>(response.Content);
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public static Models.FichaPersonal.FichaPersonalContent ConsultaFichaPersonalUsuario(Models.FichaPersonal.FichaPersonalRequest value)
+        {
+            Models.FichaPersonal.FichaPersonalContent res = new Models.FichaPersonal.FichaPersonalContent();
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiConsultaFichaPersona)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.FichaPersonal.FichaPersonalResponse>(response.Content).ContentIndex;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public static List<Models.FichasEntrenamiento.FichasEntrenamientoContent> ConsultaFichasEntrenamiento(Models.FichasEntrenamiento.FichasEntrenamientoRequest value)
+        {
+            List<Models.FichasEntrenamiento.FichasEntrenamientoContent> res = new List<Models.FichasEntrenamiento.FichasEntrenamientoContent>();
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiConsultaFichaEntrenamiento)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.FichasEntrenamiento.FichasEntrenamientoResponse>(response.Content).ContentIndex;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public static Models.Noticias.NoticiasResponse ConsultarNoticias()
+        {
+            Models.Noticias.NoticiasResponse res = new Models.Noticias.NoticiasResponse();
+
+            try
+            {
+                var client = new RestClient(Globals.Config.ApiConsultaNoticias)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", "{\"flujoID\":" + 0 + "}", ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.Noticias.NoticiasResponse>(response.Content);
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public static List<Models.HistorialSesiones.HistorialSesionesContent> ObtenerHistorialDeSesiones(Models.HistorialSesiones.HistorialSesionesRequest value)
+        {
+            List<Models.HistorialSesiones.HistorialSesionesContent> res = new List<Models.HistorialSesiones.HistorialSesionesContent>();
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiConsultaHistorialAsistenciaCliente)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.HistorialSesiones.HistorialSesionesResponse>(response.Content).Content;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
     }

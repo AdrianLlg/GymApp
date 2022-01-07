@@ -7,9 +7,9 @@
         x:Class="GymApp.AppShell"
         xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
         android:TabbedPage.ToolbarPlacement="Bottom"
-        BarBackgroundColor="#000000"
-        BarTextColor="White"    
-        android:TabbedPage.BarItemColor="White"
-        android:TabbedPage.BarSelectedItemColor="White"
+        BarBackgroundColor="Transparent"        
+        BarTextColor="DodgerBlue"    
+        android:TabbedPage.BarItemColor="DodgerBlue"
+        android:TabbedPage.BarSelectedItemColor="Gold"
         NavigationPage.HasNavigationBar ="False">
 </TabbedPage>

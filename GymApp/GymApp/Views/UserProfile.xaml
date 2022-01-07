@@ -148,6 +148,30 @@
                 </StackLayout>                
                 
                 <BoxView x:Name="boxviewitem" HeightRequest="1" Color="Black" Margin="25,10,25,0" />
+                <StackLayout Orientation="Horizontal" 
+                    Margin="20"
+                             HorizontalOptions="Center">
+                    <Button
+                        BackgroundColor="Coral"
+                        Text="Visualizar Ficha Personal"
+                        WidthRequest="150"
+                        HeightRequest="75"
+                        HorizontalOptions="Center"
+                        Clicked="Button_Clicked">
+
+                    </Button>
+                    <Button
+                        BackgroundColor="Coral"
+                        Text="Visualizar Historial de Sesiones"
+                        WidthRequest="150"
+                        HeightRequest="75"
+                        HorizontalOptions="Center"
+                        Clicked="Button_Clicked_1">
+
+                    </Button>
+                </StackLayout>
+               
+                
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

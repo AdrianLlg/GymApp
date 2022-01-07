@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.SpecialResourceSelection">
+    <ContentPage.Content>
+        <StackLayout 
+                   Margin="20">
+            <Label Text="Por favor, seleccione un lugar en la sesión:"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="Coral"/>
+
+            <Picker x:Name="pickerPlace" Title="Selecciona una opción" TitleColor="Black">
+            </Picker>
+
+            <Button
+                    x:Name="InscripcionButton"
+                    BackgroundColor="Coral"
+                    TextColor="White"
+                    Text = "Inscribirme"
+                    WidthRequest="150"
+                    Margin="0,30"
+                    HeightRequest="50"
+                    HorizontalOptions="Center"
+                    Clicked="Button_Clicked">
+
+            </Button>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

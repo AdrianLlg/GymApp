@@ -31,6 +31,14 @@ namespace GymApp.Views
         {
             try
             {
+                if (date < DateTime.Now)
+                {
+                    if (!(date.Date == DateTime.Now.Date))
+                    {
+                        return;
+                    }
+                }
+
                 ObservableCollection<HorariosDeportistaContent> result;
 
                 EventCollection events = new EventCollection();
@@ -47,7 +55,7 @@ namespace GymApp.Views
                 {
                     foreach (var item in result)
                     {
-                        item.cupos = item.asistencia.ToString() + "/" + item.aforoMax.ToString();
+                        item.cupos = item.asistenciaEvento.ToString() + "/" + item.aforoMax.ToString();
                         item.horaFormatoString = item.horaInicioEvento.Insert(2, ":") + " - " + item.horaFinEvento.Insert(2, ":");
                     }
 
@@ -92,6 +100,12 @@ namespace GymApp.Views
                 await DisplayAlert("Alerta", "Ha ocurrido un error al cargar el contenido.", "Ok");
                 return;
             }
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            calendar.Events = new EventCollection();
         }
     }
 }

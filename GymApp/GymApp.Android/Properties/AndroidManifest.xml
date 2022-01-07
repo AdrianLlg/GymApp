@@ -1,6 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.gymapp">
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
-    <application android:label="GymApp.Android" android:theme="@style/MainTheme"></application>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.adfrma.gymapp" android:installLocation="internalOnly">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
+	<application android:label="GymApp.Android" android:theme="@style/MainTheme">
+
+		<provider android:name="androidx.core.content.FileProvider"
+				 android:authorities="com.adfrma.gymapp.fileprovider"
+				 android:exported="false"
+				 android:grantUriPermissions="true">
+			<meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+			android:resource="@xml/file_paths"></meta-data>
+		</provider>
+		
+		
+	</application>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>

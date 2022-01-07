@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.SessionsHistory">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Label 
+                Text="Historial de Sesiones:"
+                FontSize="20"
+                FontAttributes="Bold"
+                TextColor="Coral"
+                VerticalOptions="Center" 
+                HorizontalOptions="Start" />
+
+            <CollectionView
+                x:Name="collectionViewHistory"
+                         ItemsLayout="VerticalGrid, 1"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame 
+                                BorderColor="Coral"
+                                CornerRadius="5"
+                                BackgroundColor="White"
+                                HasShadow="True"
+                                Padding="10"
+                                Margin="10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label 
+                                        Grid.Row="0"
+                                        Text="{Binding Clase}" 
+                                        TextColor="Black"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="Center"
+                                        Margin="5,0,0,0"/>
+                                    
+                                    <Image
+                                        Grid.Row="0"
+                                        WidthRequest="20"
+                                        HeightRequest="10"
+                                        Margin="0,0,5,0"
+                                        Grid.Column="1">
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Estado}" Value="A">
+                                                <Setter Property="Source" Value="activeMembership.png" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Image" Binding="{Binding Estado}" Value="C">
+                                                <Setter Property="Source" Value="icon_canceled.png" />
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                    <StackLayout Grid.Row="1" Orientation="Vertical">
+
+                                        <BoxView Grid.Column="0" x:Name="boxviewitem" HeightRequest="1" Color="Coral"  />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                            Text="Fecha: "
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding fechaFormato}"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                            Text="Horario: "
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding Horario}"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                            Text="Asistencia: "
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding Asistencia}"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                            Text="Estado: "
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding estadoText}"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                            Text="Sala: "
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding Sala}"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

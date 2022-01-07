@@ -37,64 +37,152 @@ namespace GymApp.Views
 
                 DisciplinaLabel.Text = content.disciplina;
                 HoraLabel.Text = content.horaFormatoString;
-                InstructorLabel.Text = "Nombre del instructor";
+                InstructorLabel.Text = content.nombreInstructor;
                 FechaLabel.Text = fecha.ToLongDateString();
                 SalaLabel.Text = content.sala;
-                AsistentesLabel.Text = content.asistencia.ToString() + "/" + content.aforoMax.ToString();
+                AsistentesLabel.Text = content.cupos;
 
-                if (string.IsNullOrEmpty(item.estadoInscripcion) || item.estadoInscripcion.Equals("I"))
+                //Validar con hora incluida en la fecha
+                if (content.asistenciaEvento == content.aforoMax || DateTime.Today > fecha)
                 {
-                    InscripcionButton.Text = "Inscribirme";
+                    InscripcionButton.IsVisible = false;
+                    QuitarInscripcionButton.IsVisible = false;
+                    HasSpecialResources.IsVisible = false;
+                    conditionsLabel.IsVisible = false;
                 }
                 else
                 {
-                    InscripcionButton.Text = "Quitar Inscripcion";
+                    if (content.estadoInscripcion.Equals("N") || content.estadoInscripcion.Equals("C"))
+                    {
+                        if (content.recursosEspeciales != null)
+                        {
+                            InscripcionButton.IsVisible = false;
+                            HasSpecialResources.IsVisible = true;
+                            QuitarInscripcionButton.IsVisible = false;
+                        }
+                        else
+                        {
+                            InscripcionButton.IsVisible = true;
+                            HasSpecialResources.IsVisible = false;
+                            QuitarInscripcionButton.IsVisible = false;
+                        }
+                    }
+                    else
+                    {
+                        InscripcionButton.IsVisible = false;
+                        HasSpecialResources.IsVisible = false;
+                        QuitarInscripcionButton.IsVisible = true;
+                    }
                 }
+
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await DisplayAlert("Alerta", "Ha ocurrido un error al cargar el contenido.", "Ok");
                 return;
-            }           
+            }
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
             try
             {
-                InscripcionSesionRequest obj = new InscripcionSesionRequest()
+                if (item.recursosEspeciales == null)
                 {
-                    eventoID = item.eventoID,
-                    personaID = Helpers.Settings.PersonaID,
-                    estado = item.estadoInscripcion
-                };
-
-                var resp = Functions.Services.InscripcionSesion(obj);
-
-                if (resp)
-                {
-                    if (string.IsNullOrEmpty(item.estadoInscripcion))
+                    InscripcionSesionRequest obj = new InscripcionSesionRequest()
                     {
-                        await DisplayAlert("Alerta", "Se ha registrado su inscripcion de esta sesión satisfactoriamente.", "Ok");
-                        await Navigation.PopAsync();
-                    }
-                    else
+                        eventoID = item.eventoID,
+                        personaID = Helpers.Settings.PersonaID,
+                        estado = "A",
+                        recursoAsignado = item.recursoEspecialPersona,
+                        recursosEvento = false
+                    };
+
+                    var resp = Functions.Services.InscripcionSesion(obj);
+
+                    if (resp != null)
                     {
-                        if (item.estadoInscripcion.Equals("A"))
+                        if (resp.Content)
                         {
-                            await DisplayAlert("Alerta", "Se ha registrado su retiro de esta sesión satisfactoriamente.", "Ok");
+                            await DisplayAlert("Alerta", "Se ha registrado su inscripcion a esta sesión satisfactoriamente.", "Ok");
                             await Navigation.PopAsync();
                         }
                         else
                         {
-                            await DisplayAlert("Alerta", "Se ha registrado su inscripcion de esta sesión satisfactoriamente.", "Ok");
-                            await Navigation.PopAsync();
-                        }                        
+                            if (resp.ResponseMessage.Equals("IntentosCancelar"))
+                            {
+                                await DisplayAlert("Alerta", "No se puede registrar su cancelacion debido a que ya ha superado el limite de intentos permitidos para cancelar esta sesion.", "Ok");
+                            }
+                            else if (resp.ResponseMessage.Equals("HorarioCancelar"))
+                            {
+                                await DisplayAlert("Alerta", "No se puede anular la inscripcion debido a que ha superado la hora permitida para cancelar su sesion.", "Ok");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        await DisplayAlert("Alerta", "Ha ocurrido un error al registrarlo en la sesión, intentelo de nuevo más tarde.", "Ok");
                     }
                 }
                 else
                 {
-                    await DisplayAlert("Alerta", "Ha ocurrido un error al registrarlo en la sesión, intentelo de nuevo mas tarde.", "Ok");
+                    await Navigation.PushAsync(new SpecialResourceSelection(item));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Alerta", "Ha ocurrido un error en el proceso.", "Ok");
+                return;
+            }
+        }
+
+        private async void Button_Clicked2(object sender, EventArgs e)
+        {
+            try
+            {
+                bool recEv = false;
+
+                if (item.recursosEspeciales != null)
+                {
+                    recEv = true;
+                }
+
+                InscripcionSesionRequest obj = new InscripcionSesionRequest()
+                {
+                    eventoID = item.eventoID,
+                    personaID = Helpers.Settings.PersonaID,
+                    estado = "C",
+                    recursosEvento = recEv,
+                    recursoAsignado = item.recursoEspecialPersona
+                };
+
+                var resp = Functions.Services.InscripcionSesion(obj);
+
+                if (resp != null)
+                {
+                    if (resp.Content)
+                    {
+                        await DisplayAlert("Alerta", "Se ha registrado su cancelación a esta sesión satisfactoriamente.", "Ok");
+                        await Navigation.PopAsync();
+                    }
+                    else
+                    {
+                        if (resp.ResponseMessage.Equals("IntentosCancelar"))
+                        {
+                            await DisplayAlert("Alerta", "No se puede registrar su cancelación debido a que ya ha superado el límite de intentos permitidos para cancelar esta sesión.", "Ok");
+                        }
+
+                        if (resp.ResponseMessage.Equals("HorarioCancelar"))
+                        {
+                            await DisplayAlert("Alerta", "No se puede cancelar la inscripción debido a que ha superado la hora permitida para cancelar su sesión.", "Ok");
+                        }
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Alerta", "Ha ocurrido un error al cancelar su inscripción, intentelo de nuevo más tarde.", "Ok");
                 }
             }
             catch (Exception ex)

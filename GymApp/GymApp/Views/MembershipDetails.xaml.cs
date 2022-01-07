@@ -1,6 +1,7 @@
 ﻿using GymApp.Models.Membresias;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -38,10 +39,17 @@ namespace GymApp.Views
                 fechaInicioMembLabel.Text = item.fechaInicioMembresiaDate.ToLongDateString();
                 fechaFinMembLabel.Text = item.fechaFinMembresiaDate.ToLongDateString();
                 fechaPagoMembLabel.Text = item.fechaPagoMembresiaDate.ToLongDateString();
+
+                if (item.estado.Equals("I"))
+                {
+                    solButton.IsVisible = false;
+                }
+
+                collectionViewDisciplines.ItemsSource = new ObservableCollection<DisciplinasMembresiasPersona>(item.disciplinasMemb);
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Alerta", "Ha ocurrido un error.", "Ok");
+                await DisplayAlert("Alerta", "Ha ocurrido un error al cargar la información.", "Ok");
                 return;
             }
         }

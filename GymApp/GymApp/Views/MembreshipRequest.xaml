@@ -57,7 +57,8 @@
                     HeightRequest="50"
                     Source="icon_camera.png"
                     BackgroundColor="Transparent"
-                    x:Name="cameraButton">
+                    x:Name="cameraButton"
+                    Clicked="CameraButton_Clicked">
                     
                 </ImageButton>
 
@@ -69,12 +70,34 @@
                     HeightRequest="50"
                     Source="icon_gallery.png"
                     BackgroundColor="Transparent"
-                    x:Name="galleryButton">
+                    x:Name="galleryButton"
+                    Clicked="galleryButton_Clicked">
 
                 </ImageButton>
             </Grid>
-            
-            <Image x:Name="PhotoImage" />
+            <Label
+                
+                Text="Imagen Adjunta:"
+                TextColor="Gray"
+                >
+                
+            </Label>
+            <Image x:Name="PhotoImage" 
+                   HeightRequest="150"
+                   WidthRequest="75"
+                   Margin="20"/>
+
+            <Button
+                Text="Enviar Solicitud"
+                Clicked="Button_Clicked"
+                HeightRequest="50"
+                WidthRequest="150"
+                Margin="0,10,0,0"
+                BackgroundColor="Coral"
+                TextColor="White"
+                HorizontalOptions="Center">
+                
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

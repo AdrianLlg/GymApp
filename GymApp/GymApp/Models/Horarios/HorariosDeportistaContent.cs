@@ -14,10 +14,15 @@ namespace GymApp.Models.Horarios
         public string sala { get; set; }
         public int aforoMax { get; set; }
         public int aforoMin { get; set; }
-        public int asistencia { get; set; }
         public string cupos { get; set; }
         public string horaFormatoString { get; set; }
         public string estadoInscripcion { get; set; }
-
+        public int instructorID { get; set; }    
+        public int asistenciaEvento { get; set; }
+        public int asistenciaPersona { get; set; }
+        public string nombreInstructor { get; set; }
+        public int intentosCancelar { get; set; }
+        public List<EventoClasePersonaRecursosEspecialesEntity> recursosEspeciales { get; set; }
+        public int recursoEspecialPersona { get; set; }
     }
 }
