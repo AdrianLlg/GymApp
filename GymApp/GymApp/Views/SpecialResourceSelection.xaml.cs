@@ -31,18 +31,27 @@ namespace GymApp.Views
         {
             try
             {
-                foreach (var item in content.recursosEspeciales)
-                {
-                    items.Add(item.eventoRecursoID, item.nombreRecurso + ": " + item.descripcionRecurso);
+                content.recursosEspecialesDisponibles = content.recursosEspeciales.Where(x => x.personaID == 0).ToList();
 
-                    pickerPlace.Items.Add(item.nombreRecurso + ": " + item.descripcionRecurso);
+                if (content.recursosEspecialesDisponibles.Count > 0)
+                {
+                    foreach (var item in content.recursosEspecialesDisponibles)
+                    {
+                        items.Add(item.eventoRecursoID, item.nombreRecurso + ": " + item.descripcionRecurso);
+
+                        pickerPlace.Items.Add(item.nombreRecurso + ": " + item.descripcionRecurso);
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Alerta", "Al momento la sesión no cuenta con lugares.", "Ok");
                 }
             }
             catch
             {
                 await DisplayAlert("Alerta", "Al momento la sesión no cuenta con lugares.", "Ok");
             }
-            
+
         }
 
         private async void Button_Clicked(object sender, EventArgs e)

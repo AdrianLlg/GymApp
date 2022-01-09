@@ -56,7 +56,7 @@ namespace GymApp.Views
                     foreach (var item in result)
                     {
                         item.cupos = item.asistenciaEvento.ToString() + "/" + item.aforoMax.ToString();
-                        item.horaFormatoString = item.horaInicioEvento.Insert(2, ":") + " - " + item.horaFinEvento.Insert(2, ":");
+                        item.horaFormatoString = item.horaInicioEvento.Insert(2, ":") + " - " + item.horaFinEvento.Insert(2, ":");            
                     }
 
                     events.Add(date, result);

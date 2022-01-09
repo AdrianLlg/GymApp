@@ -25,7 +25,7 @@ namespace GymApp
                 }
 
                 this.Children.Add(new NavigationPage(new UserProfile()) { Title = "Perfil", IconImageSource = "icon_home.png" });
-                this.Children.Add(new NavigationPage(new Main()) { Title = "Inicio", IconImageSource = "icon_home.png" });
+                this.Children.Add(new NavigationPage(new Main()) { Title = "Inicio", IconImageSource = "icon_star.png" });
 
                 if (Helpers.Settings.MembresiasActivas.Count > 0)
                 {

@@ -24,5 +24,6 @@ namespace GymApp.Models.Horarios
         public int intentosCancelar { get; set; }
         public List<EventoClasePersonaRecursosEspecialesEntity> recursosEspeciales { get; set; }
         public int recursoEspecialPersona { get; set; }
+        public List<EventoClasePersonaRecursosEspecialesEntity> recursosEspecialesDisponibles { get; set; }
     }
 }
