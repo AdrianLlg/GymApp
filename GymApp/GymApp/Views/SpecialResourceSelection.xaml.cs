@@ -27,14 +27,22 @@ namespace GymApp.Views
         }
 
 
-        public void LoadData(HorariosDeportistaContent content)
+        public async void LoadData(HorariosDeportistaContent content)
         {
-            foreach (var item in content.recursosEspeciales)
+            try
             {
-                items.Add(item.eventoRecursoID, item.nombreRecurso + ": " + item.descripcionRecurso);
+                foreach (var item in content.recursosEspeciales)
+                {
+                    items.Add(item.eventoRecursoID, item.nombreRecurso + ": " + item.descripcionRecurso);
 
-                pickerPlace.Items.Add(item.nombreRecurso + ": " + item.descripcionRecurso);
+                    pickerPlace.Items.Add(item.nombreRecurso + ": " + item.descripcionRecurso);
+                }
             }
+            catch
+            {
+                await DisplayAlert("Alerta", "Al momento la sesión no cuenta con lugares.", "Ok");
+            }
+            
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -78,7 +86,7 @@ namespace GymApp.Views
                     if (resp.Content)
                     {
                         await DisplayAlert("Alerta", "Se ha registrado su inscripción a esta sesión satisfactoriamente.", "Ok");
-                        await Navigation.PopAsync();
+                        await Navigation.PopToRootAsync();
                     }
                     else
                     {

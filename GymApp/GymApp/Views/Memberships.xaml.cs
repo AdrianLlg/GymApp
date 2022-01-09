@@ -18,10 +18,13 @@ namespace GymApp.Views
     {
 
         public ObservableCollection<MembresiaContent> MembresiasCollection;
-        public Memberships()
+        public Memberships(ObservableCollection<MembresiaContent> listCollection)
         {
             InitializeComponent();
             this.Title = "Membresías";
+
+            MembresiasCollection = listCollection;
+
             NavigationPage.SetHasNavigationBar(this, false);
             LoadData();
         }
@@ -32,14 +35,6 @@ namespace GymApp.Views
             {
                 DateTime hoy = DateTime.Now;
                 hoy = hoy.AddMonths(-5);
-
-                MembresiaRequest request = new MembresiaRequest()
-                {
-
-                    personaID = Helpers.Settings.PersonaID.ToString()
-                };
-
-                MembresiasCollection = Functions.Services.ConsultarMembresias(request);
 
                 if (MembresiasCollection != null)
                 {
@@ -54,12 +49,12 @@ namespace GymApp.Views
                         item.fechaPagoMembresiaDate = fechaPago;
                     }
 
-                    #region Codigo para almacenar las membresias activas actuales en una variable global
+                    //#region Codigo para almacenar las membresias activas actuales en una variable global
 
-                    var itemsToFill = MembresiasCollection.Where(x => x.estado == "A").ToList();
-                    Helpers.Settings.MembresiasActivas = itemsToFill;
+                    //var itemsToFill = MembresiasCollection.Where(x => x.estado == "A").ToList();
+                    //Helpers.Settings.MembresiasActivas = itemsToFill;
 
-                    #endregion
+                    //#endregion
 
                     var list = MembresiasCollection.Where(x => x.fechaInicioMembresiaDate > hoy.Date).ToList();
 

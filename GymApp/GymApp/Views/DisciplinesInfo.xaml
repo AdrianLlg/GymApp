@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.DisciplinesInfo">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label 
+                Text="Disciplinas del Establecimiento:"
+                FontSize="20"
+                FontAttributes="Bold"
+                TextColor="Gray"
+                VerticalOptions="Center" 
+                HorizontalOptions="Start" 
+                Margin="10,20,0,0"/>
+
+            <CollectionView
+                x:Name="collectionViewDisciplines"
+                SelectionMode="None"
+                IsGrouped="True"
+                Margin="0,15"
+                >
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Label
+                            Text="{Binding NombreDisciplina}"
+                            Margin="10,0"
+                            Padding="10"
+                            FontSize="17"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            BackgroundColor="Gray"/>
+                        
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ScrollView>
+                            <Grid Padding="10">
+                                <StackLayout Orientation="Vertical" Margin="10,0,0,0">
+                                    <StackLayout Orientation="Horizontal"  IsVisible="{Binding VisibleClases}">
+                                        <Label Text="Clase: "/>
+                                        <Label Text="{Binding NombreClase}" FontSize="14" TextColor="Black"/>                                        
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal"  IsVisible="{Binding VisibleClases}">
+                                        <Label Text="Descripción: " FontSize="14" TextColor="Black"/>
+                                        <Label Text="{Binding DescripcionClase}" FontSize="14" TextColor="Black"/>
+                                    </StackLayout>
+                                    <StackLayout IsVisible="{Binding VisibleNoClases}">
+                                        <Label
+                                        Text="La disciplina no contiene niveles asignados por el momento."
+                                        FontSize="15">
+                                        </Label>
+                                    </StackLayout>
+                                    <BoxView
+                                        HeightRequest="1"
+                                        Color="Gray">
+                                    </BoxView>
+                                </StackLayout>
+                                
+                            </Grid>
+                        </ScrollView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

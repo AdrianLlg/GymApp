@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.Instructor.SchedulesInstructor">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Label
+                Margin="0,10,0,0"
+                Text="Sesiones próximas:"
+                FontSize="20"
+                FontAttributes="Bold"
+                >
+            </Label>
+            <CollectionView
+                x:Name="collectionViewSchedules"
+                         ItemsLayout="VerticalGrid, 1"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame 
+                                BorderColor="DodgerBlue"
+                                CornerRadius="5"
+                                BackgroundColor="White"
+                                HasShadow="True"
+                                Padding="10"
+                                Margin="10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label 
+                                        Grid.Row="0"
+                                        Text="{Binding nombreClase}" 
+                                        FontAttributes="Bold"
+                                        VerticalOptions="Center"
+                                        Margin="5,0,0,0"/>
+                                  
+                                    <StackLayout Grid.Row="1" Orientation="Vertical">
+
+                                        <BoxView Grid.Column="0" x:Name="boxviewitem" HeightRequest="1" Color="DodgerBlue"  />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                            Text="Fecha: "
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding fecha}"
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                            Text="Hora: "
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding horaFormatoString}"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                            Text="Instructor: "
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding NombreInstructor}"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                            Text="Cupos: "
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding cupos}"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                            Text="Sala: "
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding Sala}"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal" x:Name="RecursoEspecial" IsVisible="{Binding recursoAsignado}">
+                                            <Label
+                                            Text="Lugar en la sesión: "
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding descripcionRecurso}"
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+                                    </StackLayout>
+
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label
+                x:Name="noSessions"
+                FontSize="15"
+                TextColor="Black"
+                IsVisible="false">
+            </Label>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

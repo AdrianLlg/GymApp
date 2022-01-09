@@ -34,7 +34,7 @@ namespace GymApp.Views
                     personaID = Helpers.Settings.PersonaID
                 };
 
-                var response = Functions.Services.ObtenerHistorialDeSesiones(request).OrderBy(x => x.Fecha).ToList();
+                var response = Functions.Services.ObtenerHistorialDeSesiones(request);
 
                 if (response != null)
                 {

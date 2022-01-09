@@ -63,7 +63,8 @@ namespace GymApp.Views
 
                 if (response != null)
                 {
-                    if (response.ContentIndex.Count > 0)
+                    //Esta trayendo null cuando no hay noticias
+                    if (response.ContentIndex != null)
                     {
                         NoticiasLabel.Text = "Noticias: ";
 

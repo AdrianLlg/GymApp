@@ -390,5 +390,63 @@ namespace GymApp.Functions
                 return null;
             }
         }
+
+        public static List<Models.DisciplinasInfo.DisciplinasInfoContent> ObtenerDisciplinas()
+        {
+            List<Models.DisciplinasInfo.DisciplinasInfoContent> res = new List<Models.DisciplinasInfo.DisciplinasInfoContent>();
+
+            try
+            {
+                //string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiConsultaDisciplinasDeportista)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", "{\"flujoID\":" + 0 + "}", ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.DisciplinasInfo.DisciplinasInfoResponse>(response.Content).Content;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public static List<Models.Instructor.SesionesProximasInstructor.SesionesProximasInstructorContent> ObtenerSesionesProximasInstructor(int value)
+        {
+            List<Models.Instructor.SesionesProximasInstructor.SesionesProximasInstructorContent> res = new List<Models.Instructor.SesionesProximasInstructor.SesionesProximasInstructorContent>();
+
+            try
+            {
+                //string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiConsultaClasesPendientesInstructor)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", "{\"personaID\":" + value + "}", ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.Instructor.SesionesProximasInstructor.SesionesProximasInstructorResponse>(response.Content).ContentIndex;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }
