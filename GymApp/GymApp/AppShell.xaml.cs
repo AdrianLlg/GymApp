@@ -1,5 +1,6 @@
 ﻿using GymApp.Models.Membresias;
 using GymApp.Views;
+using GymApp.Views.Instructor;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -43,6 +44,7 @@ namespace GymApp
             else if (Helpers.Settings.RoleID == 2)
             {
                 this.Children.Add(new NavigationPage(new UserProfile()) { Title = "Perfil", IconImageSource = "icon_home.png" });
+                this.Children.Add(new NavigationPage(new MainInstructor()) { Title = "Agendas", IconImageSource = "icon_star.png" });
             }
         }
 

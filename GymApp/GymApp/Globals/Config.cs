@@ -6,7 +6,7 @@ namespace GymApp.Globals
 {
     public class Config
     {
-        public static string BaseUrl = "http://35f6-186-69-101-83.ngrok.io";
+        public static string BaseUrl = "http://7086-186-69-101-83.ngrok.io";
         public static string ApiLogin = $"{BaseUrl}/api/Login";
         public static string ApiRegistro = $"{BaseUrl}/api/CRUDRegistroAdmin";
         public static string ApiMembresias = $"{BaseUrl}/api/MembresiasUsuario";
@@ -21,6 +21,11 @@ namespace GymApp.Globals
         public static string ApiConsultaHistorialAsistenciaCliente = $"{BaseUrl}/api/ConsultaHistorialAsistenciaCliente";
         public static string ApiConsultaDisciplinasDeportista = $"{BaseUrl}/api/ConsultaDisciplinasDeportista";
         public static string ApiConsultaClasesPendientesInstructor = $"{BaseUrl}/api/ConsultaClasesPendientesInstructor";
-
+        public static string ApiConsultaListaAsistencia = $"{BaseUrl}/api/ConsultaListaAsistencia";
+        public static string ApiGenerarQRInstructor = $"{BaseUrl}/api/GenerarQRInstructor";
+        public static string ApiGenerarCancelarEventoApp = $"{BaseUrl}/api/CancelarEventoApp";      
+        public static string ApiRegistrarAsistenciaManual = $"{BaseUrl}/api/RegistrarAsistenciaManual"; 
+        public static string ApiCrearFichaPersona = $"{BaseUrl}/api/FichaPersona";
+        public static string ApiCrearFichaEntrenamiento = $"{BaseUrl}/api/FichaEntrenamiento";
     }
 }

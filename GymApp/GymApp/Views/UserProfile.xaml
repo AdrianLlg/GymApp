@@ -148,9 +148,11 @@
                 </StackLayout>                
                 
                 <BoxView x:Name="boxviewitem" HeightRequest="1" Color="Black" Margin="25,10,25,0" />
-                <StackLayout Orientation="Horizontal" 
-                    Margin="20"
-                             HorizontalOptions="Center">
+                <StackLayout 
+                        Orientation="Horizontal" 
+                        Margin="20"
+                        HorizontalOptions="Center"
+                        x:Name="fichasBtnStack">
                     <Button
                         BackgroundColor="Coral"
                         Text="Visualizar Ficha Personal"

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.Instructor.MainInstructor">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" BackgroundColor="White">
+            <StackLayout Margin="20, 40, 20, 30" BackgroundColor="White" Orientation="Horizontal">
+                <Label
+                        x:Name="welcomeLabel"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        HeightRequest="30"
+                        VerticalOptions="Center"
+                        BackgroundColor="Transparent">
+                </Label>
+
+                <ImageButton
+                        Source="logout.png"
+                        Clicked="ImageButton_Clicked"
+                        HeightRequest="30"
+                        WidthRequest="30"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="Center">
+                </ImageButton>
+            </StackLayout>
+            <BoxView HeightRequest="1" Color="DodgerBlue"  />
+            <StackLayout 
+                Orientation="Horizontal"
+                VerticalOptions="CenterAndExpand"
+                Margin="0,0,0,20">
+                <Frame
+                    BackgroundColor="DodgerBlue"
+                    BorderColor="DodgerBlue"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="End"
+                    HeightRequest="30"
+                    WidthRequest="150">
+                    <Label
+                        Text="Agendas"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        TextColor="White"
+                        FontSize="15"
+                        BackgroundColor="Transparent">
+                        
+                    </Label>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="TapGestureRecognizer_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

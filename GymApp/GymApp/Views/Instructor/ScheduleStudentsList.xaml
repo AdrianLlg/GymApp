@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.Instructor.ScheduleStudentsList">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout BackgroundColor="White" Spacing="0">
+            
+            <Label
+                Margin="20"
+                x:Name="asistentesTitleLabel"
+                FontSize="20"
+                TextColor="Black"
+                FontAttributes="Bold"
+                >
+            </Label>
+                <Frame
+                    BackgroundColor="DarkRed"
+                    HeightRequest="20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="60"/>
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Grid.Column="0"
+                            Text="Nombres/Apellidos"
+                            TextColor="White"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center">
+
+                        </Label>
+                        <Label
+                            Grid.Column="1"
+                            Text="Asistencia"
+                            TextColor="White"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center">
+
+                        </Label>
+                        <Label
+                            Grid.Column="2"
+                            Text="+Info"
+                            TextColor="White"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            HorizontalOptions="End"
+                            Margin="0,0,5,0"
+                            VerticalOptions="Center">
+
+                        </Label>
+                    </Grid>
+
+                </Frame>
+            <CollectionView
+                x:Name="collectionViewListAttendants"
+                         ItemsLayout="VerticalGrid, 1"
+                SelectionMode="None"
+                HeightRequest="425"
+                BackgroundColor="White">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame
+                                BorderColor="DarkRed"
+                                HeightRequest="40">
+                                <Grid RowSpacing="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="40"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label 
+                                        Grid.Column="0"
+                                        TextColor="Black"
+                                        Text="{Binding nombre}" 
+                                        LineBreakMode="TailTruncation"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="Center"/>
+
+                                    <CheckBox 
+                                        Grid.Column="1"
+                                        Color="DarkRed"
+                                        Margin="0,0,30,0"
+                                        ClassId="{Binding eventoPersonaID}"
+                                        IsChecked="{Binding asistenciaCheckbox}"
+                                        IsEnabled="{Binding enableCheckBox}"/>
+
+                                    <ImageButton
+                                        Grid.Column="2"
+                                        BackgroundColor="Transparent"
+                                        Source="rightArrow.png"
+                                        HeightRequest="15"
+                                        WidthRequest="20"
+                                        Clicked="ImageButton_Clicked">
+                                    </ImageButton>
+
+
+                                </Grid>
+                            </Frame>                            
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label
+                x:Name="noAttendants"
+                FontSize="15"
+                TextColor="Black"
+                IsVisible="false">
+            </Label>
+            <Button
+                Text="Registrar Asistencia"
+                x:Name="registrarAsistenciaBtn"
+                HeightRequest="60"
+                WidthRequest="150"
+                Margin="0,20"
+                BackgroundColor="Black"
+                TextColor="White"
+                Clicked="ButtonAsistencia_Clicked">
+                
+            </Button>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -57,11 +57,18 @@ namespace GymApp.Views
                 await DisplayAlert("Alerta","Ha ocurrido un error al consultar la información del perfil.","Ok");
             }
 
+
+            if (Helpers.Settings.RoleID == 2)
+            {
+                fichasBtnStack.IsVisible = false;
+            }
+
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new UserPersonalProgress());
+            int id = Helpers.Settings.PersonaID;
+            await Navigation.PushAsync(new UserPersonalProgress(id, 0));
         }
 
         private async void Button_Clicked_1(object sender, EventArgs e)

@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.Instructor.TrainingDetailsForms">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout x:Name="stackFillInfo"  Margin="20">
+                    <Label
+                        Text="Por favor ingrese los siguiente campos:"
+                        Margin="0,10"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="DarkRed"
+                    >
+                    </Label>
+                    <Label
+                        Text="Peso:"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                    >
+                    </Label>
+
+                    <Entry x:Name="pesoEntry"
+                           Keyboard="Numeric"/>
+
+                    <Label
+                        Text="Estatura:"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                    >
+                    </Label>
+
+                    <Entry x:Name="estaturaEntry"
+                           Keyboard="Numeric"/>
+
+                    <Label
+                        Text="Indice Masa Muscular:"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                    >
+                    </Label>
+                    <Entry x:Name="masaMuscularEntry"
+                           Keyboard="Numeric"/>
+
+                    <Label
+                        Text="Indice Grasa Corporal:"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                    >
+                    </Label>
+                    <Entry x:Name="grasaCorpEntry"
+                           Keyboard="Numeric"/>
+
+                    <Label
+                        Text="Medida de Brazos:"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                    >
+                    </Label>
+
+                    <Entry x:Name="brazosEntry"
+                           Keyboard="Numeric"/>
+                    <Label
+                        Text="Medida de Pecho:"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                    >
+                    </Label>
+
+                    <Entry x:Name="pechoEntry"
+                           Keyboard="Numeric"/>
+                    <Label
+                        Text="Medida de Espalda:"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                    >
+                    </Label>
+
+                    <Entry x:Name="espaldaEntry"
+                           Keyboard="Numeric"/>
+                    <Label
+                        Text="Medida de Piernas:"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                    >
+                    </Label>
+
+                    <Entry x:Name="piernasEntry" Keyboard="Numeric"/>
+                    <Label
+                        Text="Medida de Cintura:"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                    >
+                    </Label>
+
+                    <Entry x:Name="cinturaEntry"
+                           Keyboard="Numeric"/>
+                    <Label
+                        Text="Medida de Cuello:"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                    >
+                    </Label>
+
+                    <Entry x:Name="cuelloEntry"
+                           Keyboard="Numeric"/>
+                    
+                    <Label
+                        Text="Observaciones:"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                    >
+                    </Label>
+                    <Entry x:Name="observacionesEntry"/>
+                    
+                </StackLayout>
+                <Button
+                    Text="Registrar Ficha"
+                    HeightRequest="75"
+                    WidthRequest="150"
+                    HorizontalOptions="Center"
+                    BackgroundColor="DarkRed"
+                    x:Name="registrarFichabtn"
+                    Clicked="registrarFichabtn_Clicked">
+
+                </Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

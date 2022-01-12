@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="GymApp.Views.Instructor.PopUpSessionCancelDetails"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
+    <StackLayout
+        Margin="20,0"
+        BackgroundColor="White"
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
+        <Frame
+            BackgroundColor="DarkRed"
+            HeightRequest="23"
+            >
+            <Label
+                Text="Cancelación"
+                FontSize="19"
+                FontAttributes="Bold"
+                TextColor="White"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center">
+                
+            </Label>
+            
+        </Frame>
+        <StackLayout Padding="20,10,20,10">
+            <Label
+            Text="Ingresa un motivo por el cual se cancela la sesión. (El motivo será utilizado para notificar la razón de cancelación a los asistentes)"
+            HorizontalOptions="Start">
+
+            </Label>
+            <Entry
+            x:Name="motivoEntry">
+            </Entry>
+
+            <Label
+            Text="Ingresa una posible fecha de recuperación."
+            HorizontalOptions="Start">
+            </Label>
+
+            <Entry
+            x:Name="posibleFechaEntry">
+            </Entry>
+
+            <Button
+                BackgroundColor="Black"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Text="Enviar"
+                TextColor="White"
+                WidthRequest="100"
+                HeightRequest="50"
+                Clicked="Enviar_Clicked"
+                Margin="0,15">
+
+            </Button>
+        </StackLayout>
+        
+    </StackLayout>
+</pages:PopupPage>

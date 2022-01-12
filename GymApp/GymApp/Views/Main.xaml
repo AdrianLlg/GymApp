@@ -5,18 +5,6 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Orientation="Vertical" BackgroundColor="White">
-                <!--<StackLayout RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
-                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
-                         VerticalOptions="FillAndExpand">
-                
-                <StackLayout Orientation="Horizontal" BackgroundColor="Black" x:Name="stckButtons">
-                    <ImageButton Source="back.png" WidthRequest="32" HeightRequest="32" HorizontalOptions="StartAndExpand" Clicked="OnBackButtonClicked" BackgroundColor="Black" />
-                    <ImageButton Source="home.png" WidthRequest="32" HeightRequest="32" HorizontalOptions="CenterAndExpand" Clicked="OnHomeButtonClicked" BackgroundColor="Black" />
-                    <ImageButton Source="forward.png" WidthRequest="32" HeightRequest="32" HorizontalOptions="EndAndExpand" Clicked="OnForwardButtonClicked" BackgroundColor="Black" />
-                </StackLayout>
-                <WebView x:Name="webView" WidthRequest="1000" HeightRequest="2000"  Source="https://aulasvirtuales.udla.edu.ec/" 
-                     Navigated="webviewNavigated" Navigating="webviewNavigating"  Margin="-10"/>
-            </StackLayout>-->
                 <StackLayout Margin="20, 30" BackgroundColor="White" Orientation="Horizontal">
                     <Label
                         x:Name="welcomeLabel"
@@ -137,9 +125,7 @@
                                                     HorizontalTextAlignment="Start">
                                                     
                                                 </Label>
-                                            </StackLayout>
-                                            
-                                            
+                                            </StackLayout>                    
                                         </StackLayout>
                                     </Grid>
                                 </Frame>

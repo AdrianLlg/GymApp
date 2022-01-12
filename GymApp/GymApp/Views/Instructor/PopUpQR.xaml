@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="GymApp.Views.Instructor.PopUpQR"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
+    <StackLayout
+        Margin="20,0"
+        BackgroundColor="White"
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
+        <Frame
+            BackgroundColor="DarkRed"
+            HeightRequest="23"
+            >
+            <StackLayout Orientation="Horizontal">
+                <Label
+                Text="Código QR"
+                FontSize="19"
+                FontAttributes="Italic"
+                TextColor="White"
+                HorizontalOptions="Start"
+                HorizontalTextAlignment="Center">
+
+                </Label>
+                <ImageButton
+                    Source="icon_close.png"
+                    HorizontalOptions="EndAndExpand"
+                    BackgroundColor="Transparent"
+                    VerticalOptions="Center"
+                    HeightRequest="30"
+                    WidthRequest="30"
+                    Clicked="ImageButton_Clicked">
+
+                </ImageButton>
+            </StackLayout>         
+        </Frame>
+        <StackLayout HeightRequest="500"
+                     WidthRequest="500"
+                     VerticalOptions="FillAndExpand" BackgroundColor="White" x:Name="QRstack">
+           
+        </StackLayout>
+
+    </StackLayout>
+</pages:PopupPage>

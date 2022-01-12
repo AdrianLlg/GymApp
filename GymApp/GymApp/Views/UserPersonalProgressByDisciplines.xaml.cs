@@ -1,4 +1,6 @@
 ﻿using GymApp.Models.FichasEntrenamiento;
+using GymApp.Models.Instructor.RegistroFichaEntrenamiento;
+using GymApp.Views.Instructor;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,47 +17,91 @@ namespace GymApp.Views
     public partial class UserPersonalProgressByDisciplines : ContentPage
     {
         public Dictionary<int, string> dictionaryList = new Dictionary<int, string>();
-        public UserPersonalProgressByDisciplines()
+        public int personaID = 0;
+        public int disciplinaID = 0;
+        public int fichaPersonaID = 0;
+
+        public UserPersonalProgressByDisciplines(int personID, int discipID, int fichaPersonID)
         {
             InitializeComponent();
-            LoadData();
+
+            personaID = personID;
+            disciplinaID = discipID;
+            fichaPersonaID = fichaPersonID;
+
+            LoadData(personaID, disciplinaID);
         }
 
-        public async void LoadData()
+        public async void LoadData(int personaID, int disciplinaID)
         {
             try
             {
-                dictionaryList = new Dictionary<int, string>();
-
-                List<string> disciplinesList = new List<string>();
-
-                if (Helpers.Settings.MembresiasActivas.Count > 0)
+                //Rol Deportista
+                if (Helpers.Settings.RoleID == 3)
                 {
-                    foreach (var item in Helpers.Settings.MembresiasActivas)
+
+                    fichaEntrenamientobtn.IsVisible = false;
+
+                    dictionaryList = new Dictionary<int, string>();
+
+                    List<string> disciplinesList = new List<string>();
+
+                    if (Helpers.Settings.MembresiasActivas.Count > 0)
                     {
-                        foreach (var i in item.disciplinasMemb)
+                        foreach (var item in Helpers.Settings.MembresiasActivas)
                         {
-                            dictionaryList.Add(i.disciplinaID, i.nombreDisciplina);
+                            foreach (var i in item.disciplinasMemb)
+                            {
+                                if (!dictionaryList.ContainsKey(i.disciplinaID))
+                                {
+                                    dictionaryList.Add(i.disciplinaID, i.nombreDisciplina);
+                                }
+
+                            }
                         }
+
+                        disciplinesList = dictionaryList.Values.Distinct().ToList();
+
                     }
 
-                    disciplinesList = dictionaryList.Values.Distinct().ToList();
-
-                }
-
-                if (disciplinesList.Count > 0)
-                {
-                    foreach (var discipline in disciplinesList)
+                    if (disciplinesList.Count > 0)
                     {
-                        pickerDiscipline.Items.Add(discipline);
-                    }
+                        foreach (var discipline in disciplinesList)
+                        {
+                            pickerDiscipline.Items.Add(discipline);
+                        }
 
-                    btn_info.IsVisible = true;
+                        btn_info.IsVisible = true;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Alerta", "Ocurrió un error al cargar las disciplinas.", "Ok");
+                    }
                 }
+                //Rol Instructor
                 else
                 {
-                    await DisplayAlert("Alerta", "Ocurrió un error al cargar las disciplinas.", "Ok");
-                }
+                    fichaEntrenamientobtn.IsVisible = true;
+                    btn_info.IsVisible = false;
+                    pickerDiscipline.IsVisible = false;
+
+                    FichasEntrenamientoRequest request = new FichasEntrenamientoRequest()
+                    {
+                        personaID = personaID,
+                        disciplinaID = disciplinaID
+                    };
+
+                    var list = Functions.Services.ConsultaFichasEntrenamiento(request);
+
+                    if (list != null)
+                    {
+                        collectionView.ItemsSource = new ObservableCollection<FichasEntrenamientoContent>(list);
+                    }
+                    else
+                    {
+                        await DisplayAlert("Alerta", "No se encontraron fichas para la disciplina escogida.", "Ok");
+                    }
+                }                
             }
             catch
             {
@@ -102,8 +148,19 @@ namespace GymApp.Views
             {
                 await DisplayAlert("Alerta","No se encontraron fichas para la disciplina escogida.","Ok");
             }
+        }
 
-
+        private async void fichaEntrenamientobtn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await Navigation.PushAsync(new TrainingDetailsForms(personaID, disciplinaID, fichaPersonaID));
+            }
+            catch
+            {
+                await DisplayAlert("Alerta", "Ocurrió un error al abrir la opción, por favor, intentelo más tarde.", "Ok");
+                return;
+            }
         }
     }
 }

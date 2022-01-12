@@ -4,98 +4,189 @@
              x:Class="GymApp.Views.UserPersonalProgress">
     <ContentPage.Content>
         <StackLayout Margin="20" Orientation="Vertical">
-            <Label
-                Text="Detalle Personal:"
-                Margin="0,10"
-                FontSize="20"
-                FontAttributes="Bold"
-                TextColor="Coral"
+            <StackLayout x:Name="stackInfo">
+                <Label
+                    Text="Detalle Personal:"
+                    Margin="0,10"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    TextColor="DarkRed"
                 >
-            </Label>
-            <Label
-                Text="Mesotipo:"
-                FontSize="18"
-                FontAttributes="Bold"
-                TextColor="Black"
+                </Label>
+                <Label
+                    Text="Mesotipo:"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="Black"
                 >
-            </Label>
-            
-            <Label
-                x:Name="mesotipoLabel"
-                FontSize="17"
-                TextColor="Black"
-                >
-            </Label>
-            <Label
-                Text="Nivel Actual de Actividad Física:"
-                FontSize="18"
-                FontAttributes="Bold"
-                TextColor="Black"
-                >
-            </Label>
+                </Label>
 
-            <Label
-                x:Name="lvlActividadLabel"
-                FontSize="17"
-                TextColor="Black"
+                <Label
+                    x:Name="mesotipoLabel"
+                    FontSize="17"
+                    TextColor="Black"
                 >
-            </Label>
+                </Label>
+                <Label
+                    Text="Nivel Actual de Actividad Física:"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                >
+                </Label>
 
-            <Label
-                Text="Antecendentes Médicos:"
-                FontSize="18"
-                FontAttributes="Bold"
-                TextColor="Black"
+                <Label
+                    x:Name="lvlActividadLabel"
+                    FontSize="17"
+                    TextColor="Black"
                 >
-            </Label>
+                </Label>
 
-            <Label
-                x:Name="antecendentesLabel"
-                FontSize="17"
-                TextColor="Black"
+                <Label
+                    Text="Antecendentes Médicos:"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="Black"
                 >
-            </Label>
+                </Label>
 
-            <Label
-                Text="Alergias:"
-                FontSize="18"
-                FontAttributes="Bold"
-                TextColor="Black"
+                <Label
+                    x:Name="antecendentesLabel"
+                    FontSize="17"
+                    TextColor="Black"
                 >
-            </Label>
+                </Label>
 
-            <Label
-                x:Name="alergiasLabel"
-                FontSize="17"
-                TextColor="Black"
+                <Label
+                    Text="Alergias:"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="Black"
                 >
-            </Label>
-            <Label
-                Text="Enfermedades:"
-                FontSize="18"
-                FontAttributes="Bold"
-                TextColor="Black"
-                >
-            </Label>
+                </Label>
 
-            <Label
-                x:Name="enfermedadesLabel"
-                FontSize="17"
-                TextColor="Black"
+                <Label
+                    x:Name="alergiasLabel"
+                    FontSize="17"
+                    TextColor="Black"
                 >
-            </Label>
+                </Label>
+                <Label
+                    Text="Enfermedades:"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                >
+                </Label>
 
+                <Label
+                    x:Name="enfermedadesLabel"
+                    FontSize="17"
+                    TextColor="Black"
+                >
+                </Label>
+            </StackLayout>
+            <Label
+                Text="Actualmente no dispone de una ficha."
+                FontSize="14"
+                FontAttributes="Italic"
+                x:Name="noFicha"
+                IsVisible="false">                
+            </Label>
             <Button
                 Text="Ver detalle por disciplina"
                 HeightRequest="75"
                 WidthRequest="175"
                 IsVisible="false"
                 HorizontalOptions="Center"
-                BackgroundColor="Coral"
+                BackgroundColor="DarkRed"
                 x:Name="disciplinaButton"
                 Clicked="disciplinaButton_Clicked">
-                
+
             </Button>
+            <StackLayout x:Name="stackFillInfo" IsVisible="false">
+                <Label
+                    Text="Por favor ingrese los siguiente campos:"
+                    Margin="0,10"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    TextColor="DarkRed"
+                >
+                </Label>
+                <Label
+                    Text="Mesotipo:"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                >
+                </Label>
+
+                <Picker x:Name="pickerMesoTipo" Title="Selecciona una opción" TitleColor="Black">
+                    <Picker.Items>
+                        <x:String>Ectomorfo</x:String>
+                        <x:String>Mesomorfo</x:String>
+                        <x:String>Endomorfo</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Label
+                    Text="Nivel Actual de Actividad Física:"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                >
+                </Label>
+
+                <Picker x:Name="pickerActividadFisica" Title="Selecciona una opción" TitleColor="Black">
+                    <Picker.Items>
+                        <x:String>Sedentario</x:String>
+                        <x:String>Ocasional</x:String>
+                        <x:String>Frecuente</x:String>
+                        <x:String>Activo</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Label
+                    Text="Antecendentes Médicos:"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                >
+                </Label>
+                <Entry x:Name="antecedentesEntry"/>
+                
+                <Label
+                    Text="Alergias:"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                >
+                </Label>
+                <Entry x:Name="alergiasEntry"/>
+                
+                <Label
+                    Text="Enfermedades:"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="Black"
+                >
+                </Label>
+                
+                <Entry x:Name="enfermedadesEntry"/>
+
+                <Button
+                    Text="Ingresar Ficha Personal"
+                    HeightRequest="75"
+                    WidthRequest="175"
+                    IsVisible="false"
+                    HorizontalOptions="Center"
+                    BackgroundColor="DarkRed"
+                    x:Name="fichaRegistrobtn"
+                    Clicked="fichaRegistrobtn_Clicked">
+
+                </Button>
+
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

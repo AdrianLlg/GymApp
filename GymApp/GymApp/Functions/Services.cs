@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using GymApp.Models;
 using System.Collections.ObjectModel;
+using GymApp.Models.Instructor.RegistroAsistenciaInscritos;
 
 namespace GymApp.Functions
 {
@@ -151,7 +152,7 @@ namespace GymApp.Functions
                 else
                 {
                     return null;
-                }                
+                }
 
                 return res;
             }
@@ -446,6 +447,187 @@ namespace GymApp.Functions
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        public static bool ValidaHoraRegistroAsistencia(int value)
+        {
+            bool res = false;
+
+            try
+            {
+                //string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiGenerarQRInstructor)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", "{\"eventoID\":" + value + "}", ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.Instructor.PermitirTomarAsistencia.TomarAsistencia.TomarAsistenciaResponse>(response.Content).content;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public static bool CancelarSesionInstructor(Models.Instructor.CancelarSesion.CancelarSesionRequest value)
+        {
+            bool res = false;
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiGenerarCancelarEventoApp)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.Instructor.CancelarSesion.CancelarSesionResponse>(response.Content).Content;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+        public static List<Models.Instructor.SesionListaAsistentes.SesionListaAsistentesContent> ObtenerAsistentesEvento(int value)
+        {
+            List<Models.Instructor.SesionListaAsistentes.SesionListaAsistentesContent> res = new List<Models.Instructor.SesionListaAsistentes.SesionListaAsistentesContent>();
+
+            try
+            {
+                //string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiConsultaListaAsistencia)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", "{\"eventoID\":" + value + "}", ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.Instructor.SesionListaAsistentes.SesionListaAsistentesResponse>(response.Content).ContentIndex;
+
+                if (res == null)
+                {
+                    return new List<Models.Instructor.SesionListaAsistentes.SesionListaAsistentesContent>();
+                }
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return res;
+
+            }
+        }
+
+        public static bool RegistrarAsistenciaManual(RegistroAsistenciaInscritosRequest value)
+        {
+            bool res = false;
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiRegistrarAsistenciaManual)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<RegistroAsistenciaInscritosResponse>(response.Content).content;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
+        public static bool RegistroFichaPersonaInstructor(Models.Instructor.RegistroFichaPersona.RegistroFichaPersonaRequest value)
+        {
+            bool res = false;
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiCrearFichaPersona)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.Instructor.RegistroFichaPersona.RegistroFichaPersonaResponse>(response.Content).ContentCreate;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public static bool RegistroFichaEntrenamientoInstructor(Models.Instructor.RegistroFichaEntrenamiento.RegistroFichaEntrenamientoRequest value)
+        {
+            bool res = false;
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiCrearFichaEntrenamiento)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.Instructor.RegistroFichaEntrenamiento.RegistroFichaEntrenamientoResponse>(response.Content).ContentCreate;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }

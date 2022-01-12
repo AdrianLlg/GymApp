@@ -8,6 +8,7 @@ namespace GymApp.Models.Instructor.SesionesProximasInstructor
     {
         public int eventoID { get; set; }
         public string fecha { get; set; }
+        public string fechaFormato { get; set; }
         public int horarioMID { get; set; }
         public string horario { get; set; }
         public int claseID { get; set; }
@@ -20,6 +21,11 @@ namespace GymApp.Models.Instructor.SesionesProximasInstructor
         public int aforoMin { get; set; }
         public int personaID { get; set; }
         public string estadoRegistro { get; set; }
+        public string horaInicio { get; set; }
+        public string horaFin { get; set; }
+        public DateTime fechaInicioFormatoDateTime { get; set; }
+        public DateTime fechaFinFormatoDateTime { get; set; }
+        //agregar el numero de inscritos en el evento (int)
 
     }
 }
