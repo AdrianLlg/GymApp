@@ -82,6 +82,20 @@ namespace GymApp.Helpers
             set => AppSettings.AddOrUpdateValue(nameof(FechaNacimiento), value);
         }
 
+        public static DateTime FechaInicioMembresia
+        {
+            get => AppSettings.GetValueOrDefault(nameof(FechaInicioMembresia), new DateTime());
+
+            set => AppSettings.AddOrUpdateValue(nameof(FechaInicioMembresia), value);
+        }
+
+        public static DateTime FechaFinMembresia
+        {
+            get => AppSettings.GetValueOrDefault(nameof(FechaFinMembresia), new DateTime());
+
+            set => AppSettings.AddOrUpdateValue(nameof(FechaFinMembresia), value);
+        }
+
 
         public static List<MembresiaContent> MembresiasActivas = new List<MembresiaContent>();
     }

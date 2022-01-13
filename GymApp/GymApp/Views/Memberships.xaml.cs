@@ -49,13 +49,6 @@ namespace GymApp.Views
                         item.fechaPagoMembresiaDate = fechaPago;
                     }
 
-                    //#region Codigo para almacenar las membresias activas actuales en una variable global
-
-                    //var itemsToFill = MembresiasCollection.Where(x => x.estado == "A").ToList();
-                    //Helpers.Settings.MembresiasActivas = itemsToFill;
-
-                    //#endregion
-
                     var list = MembresiasCollection.Where(x => x.fechaInicioMembresiaDate > hoy.Date).ToList();
 
                     MembresiasCollection = new ObservableCollection<MembresiaContent>(list);

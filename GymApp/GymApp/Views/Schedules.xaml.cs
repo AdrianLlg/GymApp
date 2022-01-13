@@ -39,34 +39,50 @@ namespace GymApp.Views
                     }
                 }
 
-                ObservableCollection<HorariosDeportistaContent> result;
-
-                EventCollection events = new EventCollection();
-
-                HorariosDeportistaRequest request = new HorariosDeportistaRequest() { 
-
-                    personaID = Helpers.Settings.PersonaID,
-                    fecha = date.ToString("yyyy-MM-dd")                
-                };
-
-                result = Functions.Services.ConsultaHorarios(request);
-
-                if (result != null)
+                if (DateTime.Now.Date >= Helpers.Settings.FechaInicioMembresia && DateTime.Now.Date <= Helpers.Settings.FechaFinMembresia)
                 {
-                    foreach (var item in result)
+                    if (date.Date < Helpers.Settings.FechaInicioMembresia.Date  || date.Date > Helpers.Settings.FechaFinMembresia.Date)
                     {
-                        item.cupos = item.asistenciaEvento.ToString() + "/" + item.aforoMax.ToString();
-                        item.horaFormatoString = item.horaInicioEvento.Insert(2, ":") + " - " + item.horaFinEvento.Insert(2, ":");            
+                        await DisplayAlert("Alerta", "No se permite agendar sesiones fuera del rango de la duración de su(s) membresía(s). Lo sentimos!", "Ok");
+                        return;
                     }
 
-                    events.Add(date, result);
+                    ObservableCollection<HorariosDeportistaContent> result;
 
-                    calendarControl.Events = events;
+                    EventCollection events = new EventCollection();
+
+                    HorariosDeportistaRequest request = new HorariosDeportistaRequest()
+                    {
+
+                        personaID = Helpers.Settings.PersonaID,
+                        fecha = date.ToString("yyyy-MM-dd")
+                    };
+
+                    result = Functions.Services.ConsultaHorarios(request);
+
+                    if (result != null)
+                    {
+                        foreach (var item in result)
+                        {
+                            item.cupos = item.asistenciaEvento.ToString() + "/" + item.aforoMax.ToString();
+                            item.horaFormatoString = item.horaInicioEvento.Insert(2, ":") + " - " + item.horaFinEvento.Insert(2, ":");
+                        }
+
+                        events.Add(date, result);
+
+                        calendarControl.Events = events;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Alerta", "No se encontraron horarios para el día seleccionado. ", "Ok");
+                    }
                 }
                 else
                 {
-                    await DisplayAlert("Alerta", "No se encontraron horarios para el día seleccionado. ", "Ok");
-                }               
+                    await DisplayAlert("Alerta", "No se permite agendar sesiones fuera del rango de la duración de su(s) membresía(s). Lo sentimos!", "Ok");
+                }
+
+                    
             }
             catch (Exception ex)
             {

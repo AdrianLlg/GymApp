@@ -1,4 +1,5 @@
-﻿using GymApp.Models.SesionesAgendadas;
+﻿using GymApp.Models.RegistroAsistenciaQR;
+using GymApp.Models.SesionesAgendadas;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -74,6 +75,67 @@ namespace GymApp.Views
             }
 
 
+        }
+
+        private async void btnQRScanner_Clicked(object sender, EventArgs e)
+        {
+
+            try
+            {
+                var obj = (ImageButton)sender;
+                var session = (SesionesAgendadasContent)obj.BindingContext;
+
+                var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+
+                scanner.TopText = "Escanea el código QR para registrar tu asistencia";
+
+                var result = await scanner.Scan();
+
+                if (result != null)
+                {
+                    RegistroAsistenciaQRRequest request = new RegistroAsistenciaQRRequest()
+                    {
+                        eventoID = session.EventoID,
+                        personaID = Helpers.Settings.PersonaID
+                    };
+
+                    var response = Functions.Services.RegistroAsistenciaDeportista(request);
+
+                    if (!string.IsNullOrWhiteSpace(response))
+                    {
+                        if (response.Equals("NoInscritoEnElEvento"))
+                        {
+                            await DisplayAlert("Alerta", "No se encuentra registrado para esta sesión, por favor, comuníquese con el administrador del establecimiento para más información.", "Ok");
+                            return;
+                        }
+                        else if (response.Equals("RegistroExitoso"))
+                        {
+                            await DisplayAlert("Alerta", "Se ha registrado correctamente su asistencia a esta sesión.", "Ok");
+                            return;
+                        }
+                        else if(response.Equals("HorarioNoValido"))
+                        {
+                            await DisplayAlert("Alerta", "Se encuentra dentro de un horario no válido para registrar su asistencia. El registro de asistencia por QR está disponible únicamente cuando inicia la clase.", "Ok");
+                            return;
+                        }
+                        else
+                        {
+                            await DisplayAlert("Alerta", "Ha ocurrido un error al registrar la asistencia. Intentelo nuevamente más tarde.", "Ok");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        await DisplayAlert("Alerta", "Ha ocurrido un error al registrar la asistencia. Intentelo nuevamente más tarde.", "Ok");
+                        return;
+                    }
+                }
+            }
+            catch
+            {
+                await DisplayAlert("Alerta", "Ha ocurrido un error al abrir la opción. Intentelo nuevamente más tarde.", "Ok");
+                return;
+            }
         }
     }
 }

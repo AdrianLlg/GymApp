@@ -659,5 +659,34 @@ namespace GymApp.Functions
                 return null;
             }
         }
+
+        public static string RegistroAsistenciaDeportista(Models.RegistroAsistenciaQR.RegistroAsistenciaQRRequest value)
+        {
+            string res = string.Empty;
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiRegistrarAsistenciaEventoPersona)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.RegistroAsistenciaQR.RegistroAsistenciaQRResponse>(response.Content).ResponseMessage;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
+            }
+        }
     }
 }

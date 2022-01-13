@@ -30,7 +30,7 @@ namespace GymApp.Views
         {
             try
             {
-                DateTime fecha = DateTime.ParseExact(content.fecha, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime fechaInicio = DateTime.ParseExact(content.fecha + " " + content.horaInicioEvento, "yyyy-MM-dd HHmm", CultureInfo.InvariantCulture);
 
                 CultureInfo cultureEC = new CultureInfo("es-EC");
                 CultureInfo.CurrentCulture = cultureEC;
@@ -38,12 +38,12 @@ namespace GymApp.Views
                 DisciplinaLabel.Text = content.disciplina;
                 HoraLabel.Text = content.horaFormatoString;
                 InstructorLabel.Text = content.nombreInstructor;
-                FechaLabel.Text = fecha.ToLongDateString();
+                FechaLabel.Text = fechaInicio.ToLongDateString();
                 SalaLabel.Text = content.sala;
                 AsistentesLabel.Text = content.cupos;
 
                 //Validar con hora incluida en la fecha
-                if (content.asistenciaEvento == content.aforoMax || DateTime.Today > fecha)
+                if (content.asistenciaEvento == content.aforoMax || DateTime.Now >= fechaInicio)
                 {
                     InscripcionButton.IsVisible = false;
                     QuitarInscripcionButton.IsVisible = false;

@@ -117,8 +117,19 @@
                                             FontAttributes="Italic" 
                                             VerticalOptions="End" />
                                         </StackLayout>
-                                    </StackLayout>
 
+                                    </StackLayout>
+                                    <ImageButton
+                                            BackgroundColor="Transparent"
+                                            x:Name="btnQRScanner"
+                                            Source="codigo-qr.png"
+                                            HeightRequest="20"
+                                            WidthRequest="20"
+                                            Margin="0,10,5,5"
+                                            Grid.Column="1"
+                                            Grid.Row="1"
+                                            Clicked="btnQRScanner_Clicked">
+                                    </ImageButton>
                                 </Grid>
                             </Frame>
                         </StackLayout>

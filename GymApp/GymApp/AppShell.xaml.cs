@@ -4,6 +4,7 @@ using GymApp.Views.Instructor;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using Xamarin.Forms;
 
@@ -19,6 +20,8 @@ namespace GymApp
             if (Helpers.Settings.RoleID == 3)
             {
                 ObservableCollection<MembresiaContent> MembresiasCollection = GetMemberships();
+
+                getDurationMembership();
 
                 if (MembresiasCollection.Count > 0)
                 {
@@ -76,6 +79,37 @@ namespace GymApp
             {
                 return new ObservableCollection<MembresiaContent>();
             }
+
+        }
+
+
+        public void getDurationMembership()
+        {
+            var activeMemberships = Helpers.Settings.MembresiasActivas;
+
+
+            if (activeMemberships.Count > 0)
+            {
+                foreach (var membership in activeMemberships)
+                {
+
+                    DateTime fechaInicio = DateTime.ParseExact(membership.fechaInicioMembresia, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
+                    DateTime fechaFin = DateTime.ParseExact(membership.fechaFinMembresia, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
+
+                    membership.fechaInicioMembresiaDate = fechaInicio;
+                    membership.fechaFinMembresiaDate = fechaFin;
+                }
+
+                activeMemberships = activeMemberships.OrderBy(x => x.fechaInicioMembresiaDate).ToList();
+
+                Helpers.Settings.FechaInicioMembresia = activeMemberships.Select(x => x.fechaInicioMembresiaDate).First();
+
+                activeMemberships = activeMemberships.OrderByDescending(x => x.fechaFinMembresiaDate).ToList();
+
+                Helpers.Settings.FechaFinMembresia = activeMemberships.Select(x => x.fechaFinMembresiaDate).First();
+
+            }
+
 
         }
 
