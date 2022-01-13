@@ -155,7 +155,7 @@
     <AndroidResource Include="Resources\drawable\logout3.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\codigo-qr.png" />
+    <AndroidResource Include="Resources\drawable\codigo_qr.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
