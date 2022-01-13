@@ -8,7 +8,7 @@
                 Text="Disciplinas del Establecimiento:"
                 FontSize="20"
                 FontAttributes="Bold"
-                TextColor="Gray"
+                TextColor="#000814"
                 VerticalOptions="Center" 
                 HorizontalOptions="Start" 
                 Margin="10,20,0,0"/>
@@ -28,7 +28,7 @@
                             FontSize="17"
                             FontAttributes="Bold"
                             TextColor="White"
-                            BackgroundColor="Gray"/>
+                            BackgroundColor="#000814"/>
                         
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>

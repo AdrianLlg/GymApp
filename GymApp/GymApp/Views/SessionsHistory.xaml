@@ -20,7 +20,7 @@
                     <DataTemplate>
                         <StackLayout>
                             <Frame 
-                                BorderColor="Coral"
+                                BorderColor="#000814"
                                 CornerRadius="5"
                                 BackgroundColor="White"
                                 HasShadow="True"

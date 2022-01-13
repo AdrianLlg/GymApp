@@ -57,12 +57,13 @@
                         FontAttributes="Bold"
                         FontSize="30"
                         HorizontalOptions="Center"
-                        TextColor="Coral">                        
+                        TextColor="#000814">                        
                     </Label>
                     <Label
                         Margin="0,20"
                         Text="Tu Información:"
                         FontAttributes="Bold"
+                        TextColor="#000814"
                         FontSize="20">
                         
                     </Label>
@@ -154,7 +155,7 @@
                         HorizontalOptions="Center"
                         x:Name="fichasBtnStack">
                     <Button
-                        BackgroundColor="Coral"
+                        BackgroundColor="#000814"
                         Text="Visualizar Ficha Personal"
                         WidthRequest="150"
                         HeightRequest="75"
@@ -163,7 +164,7 @@
 
                     </Button>
                     <Button
-                        BackgroundColor="Coral"
+                        BackgroundColor="#000814"
                         Text="Visualizar Historial de Sesiones"
                         WidthRequest="150"
                         HeightRequest="75"

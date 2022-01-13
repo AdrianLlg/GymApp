@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.MembershipListActivation">
+    <ContentPage.Content>
+        <StackLayout Margin="20" BackgroundColor="White">
+            <Label 
+                Text="Selección de Membresía: "
+                FontSize="20"
+                FontAttributes="Bold"
+                TextColor="#000814"
+                VerticalOptions="Center" 
+                HorizontalOptions="Start" />
+
+            <Label
+                Margin="0,10"
+                Text="Por favor, seleccione una de las siguientes opciones para continuar con el proceso"
+                FontSize="15">
+            </Label>
+            <StackLayout HeightRequest="200"
+                         Margin="0,20">
+                <ListView x:Name="listviewMembresias"
+                      ItemTapped="listviewMembresias_ItemTapped"
+                      BackgroundColor="#000814">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                        <Label
+                                    Text="{Binding Nombre}"
+                                    TextColor="White"
+                                            VerticalTextAlignment="Center"
+                                    Margin="10">
+                                        </Label>
+                                        <Image
+                                   Source="rightArrow.png"
+                                            HeightRequest="20"
+                                            WidthRequest="20"
+                                            Margin="0,10,5,5"
+                                    BackgroundColor="Transparent"
+                                    HorizontalOptions="EndAndExpand">
+
+                                        </Image>
+                                    </StackLayout>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

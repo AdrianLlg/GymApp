@@ -8,14 +8,14 @@
             <Label Text="Por favor, seleccione un lugar en la sesión:"
                    FontSize="20"
                    FontAttributes="Bold"
-                   TextColor="Coral"/>
+                   TextColor="#000814"/>
 
             <Picker x:Name="pickerPlace" Title="Selecciona una opción" TitleColor="Black">
             </Picker>
 
             <Button
                     x:Name="InscripcionButton"
-                    BackgroundColor="Coral"
+                    BackgroundColor="#000814"
                     TextColor="White"
                     Text = "Inscribirme"
                     WidthRequest="150"

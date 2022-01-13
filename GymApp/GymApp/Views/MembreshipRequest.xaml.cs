@@ -19,14 +19,14 @@ namespace GymApp.Views
     public partial class MembreshipRequest : ContentPage
     {
         //public MediaFile file;
-        public static MembresiaContent value;
+        public int membresiaID;
         public byte[] imageBytes = null;
 
-        public MembreshipRequest(MembresiaContent item)
+        public MembreshipRequest(int item)
         {
             InitializeComponent();
 
-            value = item;
+            membresiaID = item;
 
         }
         private async void CameraButton_Clicked(object sender, EventArgs e)
@@ -116,7 +116,7 @@ namespace GymApp.Views
                 {
 
                     personaID = Helpers.Settings.PersonaID,
-                    membresiaID = value.membresiaID,
+                    membresiaID = membresiaID,
                     imagen = Convert.ToBase64String(imageBytes)
 
                 };

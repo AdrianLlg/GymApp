@@ -4,7 +4,7 @@
              x:Class="GymApp.Login">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="primary">Indigo</Color>
+            <Color x:Key="primary">#000814</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -49,7 +49,7 @@
                          HeightRequest="50" 
                          TextColor="White" 
                          Text="Regístrate"  Clicked="Handle_Clicked"                         
-                         BackgroundColor="Indigo"
+                         BackgroundColor="#000814"
                          HorizontalOptions="FillAndExpand"/>
 
                 <Label Text="Forgot password" 

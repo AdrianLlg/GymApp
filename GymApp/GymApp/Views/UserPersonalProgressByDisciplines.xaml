@@ -26,7 +26,7 @@
                 WidthRequest="150"
                 IsVisible="false"
                 HorizontalOptions="Center"
-                BackgroundColor="Coral"
+                BackgroundColor="#000814"
                 x:Name="btn_info"
                 Clicked="btn_info_Clicked"/>
                 

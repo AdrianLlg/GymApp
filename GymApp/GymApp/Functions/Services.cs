@@ -630,5 +630,34 @@ namespace GymApp.Functions
                 return false;
             }
         }
+
+        public static List<Models.Membresias.MembresiasList.MembresiasListContent> GetMembresiasEstablecimiento(int value)
+        {
+            List<Models.Membresias.MembresiasList.MembresiasListContent> res = new List<Models.Membresias.MembresiasList.MembresiasListContent>();
+
+            try
+            {
+                //string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiMembresiaAdmin)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", "{\"flujoID\":" + value + "}", ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.Membresias.MembresiasList.MembresiasListResponse>(response.Content).ContentIndex;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymApp.Views.MembershipListActivationDetails">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Label 
+                Text="Detalles de la Membresía: "
+                FontSize="20"
+                Margin="0,10"
+                FontAttributes="Bold"
+                TextColor="#000814"
+                VerticalOptions="Center" 
+                HorizontalOptions="Start" />
+
+            <Label
+                    Text="Nombre Membresía:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    TextColor="Black">
+            </Label>
+            <Label
+                    x:Name="nombreMembLabel"
+                    FontSize="14"
+                    TextColor="Black">
+            </Label>
+            <Label
+                    Text="Precio Membresía:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    TextColor="Black">
+            </Label>
+            <Label
+                    x:Name="precioMembLabel"
+                    FontSize="14"
+                    TextColor="Black">
+            </Label>
+            <Label
+                    Text="Duración Membresía:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    TextColor="Black">
+            </Label>
+            <Label
+                    x:Name="periodicidadMembLabel"
+                    FontSize="14"
+                    TextColor="Black">
+            </Label>
+            
+            <CollectionView
+                x:Name="collectionViewDisciplines"
+                         ItemsLayout="VerticalGrid, 1"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame 
+                                BorderColor="#000814"
+                                CornerRadius="5"
+                                BackgroundColor="White"
+                                HasShadow="True"
+                                Padding="10"
+                                Margin="10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label 
+                                        Grid.Row="0"
+                                        Text="{Binding nombre}" 
+                                        FontAttributes="Bold"
+                                        TextColor="Black"
+                                        LineBreakMode="TailTruncation"
+                                        VerticalOptions="Center"
+                                        Margin="5,0,0,0"/>
+
+                                    <StackLayout Grid.Row="1" Orientation="Vertical">
+
+                                        <BoxView Grid.Column="0" x:Name="boxviewitem" HeightRequest="1" Color="Gray"  />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                            Text="Descripción Disciplina: "
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding descripcion}"   
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                            Text="Sesiones Disponibles: "
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold" 
+                                            VerticalOptions="End" />
+                                            <Label
+                                            Text="{Binding numClasesDisponibles}"
+                                            FontAttributes="Italic" 
+                                            VerticalOptions="End" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button
+                Margin="0,30"
+                Text="Solicitar Activacion"
+                WidthRequest="300"
+                HorizontalOptions="Center"
+                HeightRequest="50"
+                BackgroundColor="#000814"
+                Clicked="Button_Clicked"
+                x:Name="solButton">
+
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

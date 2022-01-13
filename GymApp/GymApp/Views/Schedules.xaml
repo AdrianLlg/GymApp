@@ -13,15 +13,15 @@
                     BackgroundColor="White"
                     DaysTitleColor="Black"
                     DeselectedDayTextColor="Black"
-                    EventIndicatorColor="Coral"
+                    EventIndicatorColor="#000814"
                     EventIndicatorSelectedColor="Transparent"
                     HorizontalOptions="FillAndExpand"
                     MonthLabelColor="Black"
-                    SelectedDateColor="Coral"
-                    SelectedDayBackgroundColor="Coral"
-                    SelectedDayTextColor="Black"
+                    SelectedDateColor="#000814"
+                    SelectedDayBackgroundColor="#000814"
+                    SelectedDayTextColor="White"
                     TodayFillColor="PaleTurquoise"
-                    SelectedTodayTextColor="Black"
+                    SelectedTodayTextColor="White"
                     TodayTextColor="Black"
                     TodayOutlineColor="PaleTurquoise"
                     VerticalOptions="FillAndExpand">
@@ -29,7 +29,7 @@
                     <plugin:Calendar.EventTemplate>
                         <DataTemplate>
                             <Frame
-                                BorderColor="Coral"
+                                BorderColor="#000814"
                                 Margin="15"
                                 Padding="1"
                                 BackgroundColor="White"
@@ -43,8 +43,8 @@
                                             Text="{Binding disciplina}"
                                             TextColor="Black"
                                             VerticalOptions="Center" />
-                                    
-                                    <BoxView HeightRequest="1" Color="Coral" Margin="0" />
+
+                                    <BoxView HeightRequest="1" Color="#000814" Margin="0" />
                                     <Grid
                                         x:Name="gridContent"      
                                         RowSpacing="0">

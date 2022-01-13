@@ -3,139 +3,112 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GymApp.Views.Main" >
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Orientation="Vertical" BackgroundColor="White">
-                <StackLayout Margin="20, 30" BackgroundColor="White" Orientation="Horizontal">
-                    <Label
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Image Source="backgroundphoto.jpg" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill"/>
+            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout>
+                    <StackLayout HeightRequest="80" BackgroundColor="Transparent" Orientation="Horizontal">
+                        <Label
                         x:Name="welcomeLabel"
                         FontSize="18"
                         FontAttributes="Bold"
                         HeightRequest="30"
+                        Margin="30"
+                        TextColor="White"
                         VerticalOptions="Center"
                         BackgroundColor="Transparent">
-                    </Label>
+                        </Label>
 
-                    <ImageButton
-                        Source="logout.png"
+                        <ImageButton
+                        Source="logout3.png"
                         Clicked="ImageButton_Clicked"
-                        HeightRequest="30"
-                        WidthRequest="30"
+                        HeightRequest="60"
+                        WidthRequest="60"
+                        Margin="20,20,20,10"
                         BackgroundColor="Transparent"
                         HorizontalOptions="EndAndExpand"
                         VerticalOptions="Center">
-                    </ImageButton>
-                </StackLayout>
-                <StackLayout>
-                    <!--<AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <BoxView x:Name="bdGradient" Scale="2" AnchorX="0" AnchorY="0" 
-                             AbsoluteLayout.LayoutFlags="All"
-                             AbsoluteLayout.LayoutBounds="0,0,1,1">
-                            <BoxView.Background>
-                                <LinearGradientBrush>
-                                    <GradientStop Color="Gray" Offset="0.3"/>
-                                    <GradientStop Color="DarkGray" Offset="0.5" />
-                                    <GradientStop Color="Gray" Offset="0.7" />
-                                    <GradientStop Color="DarkGray" Offset="1.0" />
-                                </LinearGradientBrush>
-                            </BoxView.Background>
-                        </BoxView>
-                    </AbsoluteLayout>-->
+                        </ImageButton>
+                    </StackLayout>
+                    <BoxView HeightRequest="2" Color="White" Margin="0,0,0,80"  />
+                    <StackLayout Spacing="30"
+                             VerticalOptions="Start">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
+                            <Frame HasShadow="False" CornerRadius="10" Padding="2" BorderColor="White" BackgroundColor="Transparent">
+                                <Frame
+                            HorizontalOptions="Center" 
+                            HeightRequest="70" 
+                            WidthRequest="125"
+                            BorderColor="White" 
+                            BackgroundColor="#1f1f1f">
 
-                    <Frame BorderColor="DodgerBlue" BackgroundColor="DodgerBlue">
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Consulta tus sesiones agendadas" 
-                                   TextColor="White"
-                                   HorizontalTextAlignment="Center" 
-                                   FontSize="20"
-                                   HorizontalOptions="Start"/>
-                            <Image
-                                Source="rightArrow.png"
-                                HeightRequest="20"
-                                WidthRequest="20"
-                                BackgroundColor="Transparent"
-                                HorizontalOptions="EndAndExpand">
-
-                            </Image>
-                        </StackLayout>
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Tapped="TapGestureRecognizer_Tapped">
-                            </TapGestureRecognizer>
-                        </Frame.GestureRecognizers>
-                    </Frame>
-                </StackLayout>
-                <Label
-                    x:Name="NoticiasLabel"
-                    TextColor="Gray"
-                    FontSize="20"
-                    FontAttributes="Bold"
-                    Margin="20,20,20,0">
-                    
-                </Label>
-                <CollectionView
-                x:Name="collectionViewNoticias"
-                         ItemsLayout="VerticalGrid, 1"
-                SelectionMode="None"
-                    Margin="20">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <Frame 
-                                BorderColor="Gray"
-                                CornerRadius="2"
-                                BackgroundColor="White"
-                                HasShadow="True"
-                                Padding="10"
-                                Margin="10">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="25" />
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
-
-                                        <Label 
-                                        Grid.Row="0"
-                                        Text="{Binding titulo}" 
-                                        FontAttributes="Bold"
-                                        FontSize="18"
-                                        LineBreakMode="TailTruncation"
-                                        VerticalOptions="Center"
-                                        Margin="5,0,0,0"/>
-
-                                        <StackLayout Grid.Row="1" Orientation="Vertical">
-
-                                            <BoxView  x:Name="boxviewitem" HeightRequest="1" Color="Gray"  />
-
-                                            <StackLayout
-                                                Margin="0,20">
-                                                <Image
-                                                    Source="{Binding DisplayImage}"
-                                                    HeightRequest="150"
-                                                    WidthRequest="350"
-                                                    HorizontalOptions="Center"
-                                                    VerticalOptions="Center"
-                                                    Aspect="AspectFill">
-                                                </Image>
-                                            </StackLayout>
-                                            <StackLayout>
-                                                <Label
-                                                    Text="{Binding contenido}"
-                                                    FontSize="15"
-                                                    TextColor="Black"
-                                                    HorizontalTextAlignment="Start">
-                                                    
-                                                </Label>
-                                            </StackLayout>                    
-                                        </StackLayout>
-                                    </Grid>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Sesiones Agendadas" 
+                                       TextColor="White"
+                                       HorizontalTextAlignment="Center" 
+                                       VerticalTextAlignment="Center"
+                                       FontSize="20"/>
+                                    </StackLayout>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                    Tapped="TapGestureRecognizer_Tapped">
+                                        </TapGestureRecognizer>
+                                    </Frame.GestureRecognizers>
                                 </Frame>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                            </Frame>
+                            <Frame HasShadow="False" CornerRadius="10" Padding="2" BorderColor="White" BackgroundColor="Transparent">
+                                <Frame
+                            HorizontalOptions="Center" 
+                            HeightRequest="70"  
+                            BorderColor="White" 
+                            BackgroundColor="#1f1f1f">
+
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Membresias" 
+                                       TextColor="White"
+                                       VerticalOptions="Center"
+                                       HorizontalTextAlignment="Center" 
+                                       FontSize="20"/>
+                                    </StackLayout>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                    Tapped="TapGestureRecognizer_Tapped_2">
+                                        </TapGestureRecognizer>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </Frame>
 
 
-            </StackLayout>
-        </ScrollView>   
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <Frame HasShadow="False" CornerRadius="10" Padding="2" BorderColor="White" BackgroundColor="Transparent">
+                                <Frame
+                                HorizontalOptions="Center" 
+                                HeightRequest="70" 
+                                WidthRequest="150" 
+                                BorderColor="White" 
+                                BackgroundColor="#1f1f1f">
+
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Promociones y Noticias" 
+                                       TextColor="White"
+                                       HorizontalTextAlignment="Center" 
+                                       VerticalTextAlignment="Center"
+                                       FontSize="20"
+                                       HorizontalOptions="Start"/>
+                                    </StackLayout>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                    Tapped="TapGestureRecognizer_Tapped_1">
+                                        </TapGestureRecognizer>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </Frame>
+
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

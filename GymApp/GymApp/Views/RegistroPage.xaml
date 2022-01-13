@@ -4,7 +4,7 @@
              x:Class="GymApp.Views.RegistroPage">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="primary">Indigo</Color>
+            <Color x:Key="primary">#000814</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -59,7 +59,7 @@
                          HeightRequest="50" 
                          TextColor="White" 
                          Text="Registrar"  
-                         BackgroundColor="Indigo"
+                         BackgroundColor="#000814"
                          HorizontalOptions="FillAndExpand"
                         Clicked="Button_Clicked"/>
 
