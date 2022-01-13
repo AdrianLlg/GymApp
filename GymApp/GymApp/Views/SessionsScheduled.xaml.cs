@@ -95,7 +95,7 @@ namespace GymApp.Views
                 {
                     RegistroAsistenciaQRRequest request = new RegistroAsistenciaQRRequest()
                     {
-                        eventoID = session.EventoID,
+                        eventoID = int.Parse(result.Text),
                         personaID = Helpers.Settings.PersonaID
                     };
 
