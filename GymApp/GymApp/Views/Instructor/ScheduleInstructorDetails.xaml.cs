@@ -1,4 +1,5 @@
-﻿using GymApp.Models.Instructor.CancelarSesion;
+﻿using GymApp.Models.ConfiguracionesSistema;
+using GymApp.Models.Instructor.CancelarSesion;
 using GymApp.Models.Instructor.SesionesProximasInstructor;
 using GymApp.Models.Instructor.SesionListaAsistentes;
 using Rg.Plugins.Popup.Services;
@@ -93,16 +94,59 @@ namespace GymApp.Views.Instructor
 
         private async void Cancelar_SesionClicked(object sender, EventArgs e)
         {
-            bool alertResponse = await DisplayAlert("Alerta", "Está seguro de cancelar la sesión? Recuerde que solo podrá realizar esta acción una vez. Si cancela la sesión se notificará a los asistentes y administrador del establecimiento.", "Ok", "Cancelar");
+            try
+            {
+                bool resp = false;
+                DateTime hoy = DateTime.Now;
+                string query = string.Empty;
 
-            if (alertResponse)
-            {
-                await PopupNavigation.Instance.PushAsync(new PopUpSessionCancelDetails(item));
+                ConfiguracionesSistemaRequest req = new ConfiguracionesSistemaRequest()
+                {
+                    flujoID = 3,
+                    nombreConfiguracion = "cancelacionEventoInstructor"
+                };
+
+                var config = Functions.Services.ConsultaConfiguracionSistema(req);
+
+                if (config != null)
+                {
+                    var configuration = config.First();
+                    int value = int.Parse(configuration.Valor);
+
+                    var validation = item.fechaInicioFormatoDateTime.AddHours(-value);
+
+                    if (hoy < validation)
+                    {
+                        bool alertResponse = await DisplayAlert("Alerta", "Está seguro de cancelar la sesión? Recuerde que solo podrá realizar esta acción una vez. Si cancela la sesión se notificará a los asistentes y administrador del establecimiento.", "Ok", "Cancelar");
+
+                        if (alertResponse)
+                        {
+                            await PopupNavigation.Instance.PushAsync(new PopUpSessionCancelDetails(item));
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        await DisplayAlert("Alerta", "Lo sentimos, no se encuentra dentro del horario permitido para cancelar la sesión. Por favor, comuníquese con el administrador del establecimiento para más información.", "Ok");
+                        return;
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Alerta", "Ocurrió un error al intentar abrir la opción.", "Ok");
+                    return;
+                }
+
             }
-            else
+            catch
             {
+                await DisplayAlert("Alerta", "Ocurrió un error al intentar abrir la opción.", "Ok");
                 return;
             }
+            
         }
 
         private async void ListaAsistentes_Clicked(object sender, EventArgs e)
@@ -110,7 +154,7 @@ namespace GymApp.Views.Instructor
             try
             {
                 var validaHorario = Functions.Services.ValidaHoraRegistroAsistencia(item.eventoID);
-                //var validaHorario = true;
+                
                 await Navigation.PushAsync(new ScheduleStudentsList(item, listAttendants, validaHorario));
 
             }

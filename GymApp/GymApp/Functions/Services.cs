@@ -688,5 +688,64 @@ namespace GymApp.Functions
                 return string.Empty;
             }
         }
+
+
+        public static List<Models.ConfiguracionesSistema.ConfiguracionesSistemaContent> ConsultaConfiguracionSistema(Models.ConfiguracionesSistema.ConfiguracionesSistemaRequest value)
+        {
+            List<Models.ConfiguracionesSistema.ConfiguracionesSistemaContent> res = new List<Models.ConfiguracionesSistema.ConfiguracionesSistemaContent>();
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiConfiguracionesSistema)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.ConfiguracionesSistema.ConfiguracionesSistemaResponse>(response.Content).ContentParametro;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public static bool RegistroAsistenciaProfesor(Models.Instructor.RegistroAsistenciaInstructor.RegistroAsistenciaInstructorRequest value)
+        {
+            bool res = false;
+
+            try
+            {
+                string body = JsonConvert.SerializeObject(value);
+
+                var client = new RestClient(Globals.Config.ApiRegistrarAsistenciaEventoProfesor)
+                {
+                    Timeout = -1
+                };
+
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+
+                IRestResponse response = client.Execute(request);
+
+                res = JsonConvert.DeserializeObject<Models.Instructor.RegistroAsistenciaInstructor.RegistroAsistenciaInstructorResponse>(response.Content).content;
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

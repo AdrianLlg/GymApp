@@ -34,8 +34,6 @@ namespace GymApp.Views
                     await DisplayAlert("Alerta", "Al momento no hemos encontrado membresias disponibles, intentelo nuevamente más tarde.", "Ok");
                     return;
                 }
-
-
             }
             catch
             {

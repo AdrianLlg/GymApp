@@ -1,4 +1,5 @@
-﻿using GymApp.Models.Instructor.SesionesProximasInstructor;
+﻿using GymApp.Models.Instructor.RegistroAsistenciaInstructor;
+using GymApp.Models.Instructor.SesionesProximasInstructor;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,28 @@ namespace GymApp.Views.Instructor
         {
             InitializeComponent();
 
+            RegisterAssistanceTeacher(session);
+
             LoadQRCode(session);
 
+        }
+
+        private async void RegisterAssistanceTeacher(SesionesProximasInstructorContent session)
+        {
+            try
+            {
+                RegistroAsistenciaInstructorRequest request = new RegistroAsistenciaInstructorRequest()
+                {
+                    eventoID = session.eventoID,
+                    personaID = Helpers.Settings.PersonaID
+                };
+
+                Functions.Services.RegistroAsistenciaProfesor(request);
+            }
+            catch
+            {
+                await PopupNavigation.Instance.PopAsync();
+            }
         }
 
         private async void ImageButton_Clicked(object sender, EventArgs e)

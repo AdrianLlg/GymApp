@@ -12,20 +12,24 @@
                 FontAttributes="Bold"
                 >                
             </Label>
+
+            <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                         Command="{Binding RefreshCommand}"/>
             <CollectionView
-                x:Name="collectionView"
-                         ItemsLayout="VerticalGrid, 1"
-                SelectionMode="None">
+                    x:Name="collectionView"
+                             ItemsLayout="VerticalGrid, 1"
+                    SelectionMode="None"
+                    ItemsSource="{Binding MembresiasCollection}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
                             <Frame 
-                                BorderColor="#000814"
-                                CornerRadius="5"
-                                BackgroundColor="#000814"
-                                HasShadow="True"
-                                Padding="10"
-                                Margin="10">
+                                    BorderColor="#000814"
+                                    CornerRadius="5"
+                                    BackgroundColor="#000814"
+                                    HasShadow="True"
+                                    Padding="10"
+                                    Margin="10">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="25" />
@@ -37,19 +41,19 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Label 
-                                        Grid.Row="0"
-                                        Text="{Binding nombreMembresia}" 
-                                        FontAttributes="Bold"
-                                        LineBreakMode="TailTruncation"
-                                        TextColor="White"
-                                        VerticalOptions="Center"
-                                        Margin="5,0,0,0"/>
+                                            Grid.Row="0"
+                                            Text="{Binding nombreMembresia}" 
+                                            FontAttributes="Bold"
+                                            LineBreakMode="TailTruncation"
+                                            TextColor="White"
+                                            VerticalOptions="Center"
+                                            Margin="5,0,0,0"/>
                                     <Image
-                                        Grid.Row="0"
-                                        WidthRequest="20"
-                                        HeightRequest="10"
-                                        Margin="0,0,5,0"
-                                        Grid.Column="1">
+                                            Grid.Row="0"
+                                            WidthRequest="20"
+                                            HeightRequest="10"
+                                            Margin="0,0,5,0"
+                                            Grid.Column="1">
                                         <Image.Triggers>
                                             <DataTrigger TargetType="Image" Binding="{Binding estado}" Value="A">
                                                 <Setter Property="Source" Value="activeMembership.png" />
@@ -64,42 +68,42 @@
                                         <BoxView Grid.Column="0" x:Name="boxviewitem" HeightRequest="1" Color="Gray"  />
                                         <StackLayout Orientation="Horizontal">
                                             <Label
-                                            Text="Precio: "
-                                            TextColor="White"
-                                            LineBreakMode="TailTruncation"
-                                            FontAttributes="Bold" 
-                                            VerticalOptions="End" />
-                                            <Label
-                                            Text="{Binding precioMembresia}"
-                                            LineBreakMode="TailTruncation"
+                                                Text="Precio: "
                                                 TextColor="White"
-                                            FontAttributes="Italic" 
-                                            VerticalOptions="End" />
+                                                LineBreakMode="TailTruncation"
+                                                FontAttributes="Bold" 
+                                                VerticalOptions="End" />
+                                            <Label
+                                                Text="{Binding precioMembresia}"
+                                                LineBreakMode="TailTruncation"
+                                                    TextColor="White"
+                                                FontAttributes="Italic" 
+                                                VerticalOptions="End" />
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
                                             <Label
-                                            Text="Duración: "
-                                            LineBreakMode="TailTruncation"
-                                            FontAttributes="Bold" 
-                                                TextColor="White"
-                                            VerticalOptions="End" />
+                                                Text="Duración: "
+                                                LineBreakMode="TailTruncation"
+                                                FontAttributes="Bold" 
+                                                    TextColor="White"
+                                                VerticalOptions="End" />
                                             <Label
-                                            Text="{Binding periodicidadMembresia}"
-                                            LineBreakMode="TailTruncation"
-                                            FontAttributes="Italic" 
-                                                TextColor="White"
-                                            VerticalOptions="End" />
-                                        </StackLayout>  
+                                                Text="{Binding periodicidadMembresia}"
+                                                LineBreakMode="TailTruncation"
+                                                FontAttributes="Italic" 
+                                                    TextColor="White"
+                                                VerticalOptions="End" />
+                                        </StackLayout>
                                     </StackLayout>
                                     <ImageButton
-                                            BackgroundColor="#000814"
-                                            Source="rightArrow.png"
-                                            HeightRequest="20"
-                                            WidthRequest="20"
-                                            Margin="0,10,5,5"
-                                            Grid.Column="1"
-                                            Grid.Row="1"
-                                            Clicked="ImageButton_Clicked">
+                                                BackgroundColor="#000814"
+                                                Source="rightArrow.png"
+                                                HeightRequest="20"
+                                                WidthRequest="20"
+                                                Margin="0,10,5,5"
+                                                Grid.Column="1"
+                                                Grid.Row="1"
+                                                Clicked="ImageButton_Clicked">
                                     </ImageButton>
                                 </Grid>
                             </Frame>
@@ -107,6 +111,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

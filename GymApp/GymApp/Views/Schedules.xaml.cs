@@ -39,7 +39,7 @@ namespace GymApp.Views
                     }
                 }
 
-                if (DateTime.Now.Date >= Helpers.Settings.FechaInicioMembresia && DateTime.Now.Date <= Helpers.Settings.FechaFinMembresia)
+                if (DateTime.Now >= Helpers.Settings.FechaInicioMembresia && DateTime.Now <= Helpers.Settings.FechaFinMembresia)
                 {
                     if (date.Date < Helpers.Settings.FechaInicioMembresia.Date  || date.Date > Helpers.Settings.FechaFinMembresia.Date)
                     {

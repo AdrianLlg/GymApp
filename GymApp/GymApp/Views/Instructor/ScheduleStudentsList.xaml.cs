@@ -70,6 +70,7 @@ namespace GymApp.Views.Instructor
                 {
                     asistentesTitleLabel.Text = "Asistentes: 0";
                     collectionViewListAttendants.IsVisible = false;
+                    registrarAsistenciaBtn.IsVisible = false;
                     noAttendants.IsVisible = true;
                     noAttendants.Text = "Actualmente no tiene inscritos en la sesión.";
                 }
