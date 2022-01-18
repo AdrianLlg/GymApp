@@ -1,4 +1,5 @@
-﻿using GymApp.Models.Membresias;
+﻿using GymApp.Helpers;
+using GymApp.Models.Membresias;
 using GymAppV2.Helpers;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,10 @@ namespace GymApp.Views
     public partial class Memberships : ContentPage
     {
 
-        public ObservableCollection<MembresiaContent> MembresiasCollection;
+        public ObservableCollection<MembresiaContent> MembresiasCollection { get; set; }
+        public CultureInfo serverCulture;
         public ICommand RefreshCommand { get; }
+
         bool isRefreshing;
         public bool IsRefreshing
         {
@@ -33,17 +36,29 @@ namespace GymApp.Views
             InitializeComponent();
             this.Title = "Membresías";
 
-            MembresiasCollection = LoadData(listCollection);
+            LoadServerCulture();
+
+            IsRefreshing = false;
+
+            MembresiasCollection = new ObservableCollection<MembresiaContent>();
+
+            LoadData(listCollection);
 
             NavigationPage.SetHasNavigationBar(this, false);
 
             RefreshCommand = new Command(ExecuteRefreshCommand);
 
             this.BindingContext = this;
-            
         }
 
-        public ObservableCollection<MembresiaContent> LoadData(ObservableCollection<MembresiaContent> listCollection)
+        public void LoadServerCulture()
+        {
+            ServerCultureSetting helper = new ServerCultureSetting();
+
+            serverCulture = helper.SetCultureInfoServer();
+        }
+
+        public async void LoadData(ObservableCollection<MembresiaContent> listCollection)
         {
             try
             {
@@ -52,29 +67,34 @@ namespace GymApp.Views
 
                 if (listCollection != null)
                 {
+
                     foreach (var item in listCollection)
                     {
                         DateTime fechaInicio = DateTime.ParseExact(item.fechaInicioMembresia, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
                         DateTime fechaFin = DateTime.ParseExact(item.fechaFinMembresia, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
-                        DateTime fechaPago = DateTime.ParseExact(item.fechaPago, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
                         item.fechaInicioMembresiaDate = fechaInicio;
                         item.fechaFinMembresiaDate = fechaFin;
-                        item.fechaPagoMembresiaDate = fechaPago;
+
+                        if (!string.IsNullOrEmpty(item.fechaPago))
+                        {
+                            DateTime f = DateTime.Parse(item.fechaPago, serverCulture);
+                            item.fechaPagoMembresiaDate = f;
+                        }
+
+                        MembresiasCollection.Add(item);
                     }
-
-                    var list = MembresiasCollection.Where(x => x.fechaInicioMembresiaDate > hoy.Date).ToList();
-
-                    return new ObservableCollection<MembresiaContent>(list);
                 }
                 else
                 {
-                    return new ObservableCollection<MembresiaContent>();
+                    await DisplayAlert("Alerta", "Actualmente no dispone de membresias.", "Ok");
+                    return;
                 }
             }
             catch (Exception ex)
             {
-                return new ObservableCollection<MembresiaContent>();
+                await DisplayAlert("Alerta", "Ha ocurrido un error al cargar las membresias.", "Ok");
+                return;
             }
 
         }
@@ -85,11 +105,11 @@ namespace GymApp.Views
             {
                 var obj = (ImageButton)sender;
 
-                var membership = (MembresiaContent)obj.BindingContext;               
-                
+                var membership = (MembresiaContent)obj.BindingContext;
+
                 await Navigation.PushAsync(new MembershipDetails(membership));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await DisplayAlert("Alerta", "Ha ocurrido un error.", "Ok");
                 return;
@@ -101,6 +121,8 @@ namespace GymApp.Views
         {
             try
             {
+                IsRefreshing = true;
+
                 DateTime hoy = DateTime.Now;
                 hoy = hoy.AddMonths(-5);
                 MembresiasCollection.Clear();
@@ -121,16 +143,18 @@ namespace GymApp.Views
                     {
                         DateTime fechaInicio = DateTime.ParseExact(item.fechaInicioMembresia, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
                         DateTime fechaFin = DateTime.ParseExact(item.fechaFinMembresia, "yyyy-MM-dd HH:mm:ss tt", CultureInfo.InvariantCulture);
-                        DateTime fechaPago = DateTime.ParseExact(item.fechaPago, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                        
+                        if (!string.IsNullOrEmpty(item.fechaPago))
+                        {
+                            DateTime f = DateTime.Parse(item.fechaPago, serverCulture);
+                            item.fechaPagoMembresiaDate = f;
+                        }
 
                         item.fechaInicioMembresiaDate = fechaInicio;
                         item.fechaFinMembresiaDate = fechaFin;
-                        item.fechaPagoMembresiaDate = fechaPago;
+
+                        MembresiasCollection.Add(item);
                     }
-
-                    var list = MembresiasCollection.Where(x => x.fechaInicioMembresiaDate > hoy.Date).ToList();
-
-                    MembresiasCollection = response;
                 }
 
                 // Stop refreshing
@@ -141,7 +165,7 @@ namespace GymApp.Views
                 await DisplayAlert("Alerta", "Ha ocurrido un error al refrescar la información, por favor, intentelo nuevamente más tarde.", "Ok");
                 return;
             }
-           
+
         }
     }
 }

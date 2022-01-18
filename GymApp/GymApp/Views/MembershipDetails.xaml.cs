@@ -38,7 +38,15 @@ namespace GymApp.Views
                 periodicidadMembLabel.Text = item.periodicidadMembresia;
                 fechaInicioMembLabel.Text = item.fechaInicioMembresiaDate.ToLongDateString();
                 fechaFinMembLabel.Text = item.fechaFinMembresiaDate.ToLongDateString();
-                fechaPagoMembLabel.Text = item.fechaPagoMembresiaDate.ToLongDateString();
+
+                if (string.IsNullOrEmpty(item.fechaPago))
+                {
+                    fechaPagoMembLabel.Text = "";
+                }
+                else
+                {
+                    fechaPagoMembLabel.Text = item.fechaPagoMembresiaDate.ToLongDateString();
+                }
 
                 if (item.estado.Equals("I"))
                 {

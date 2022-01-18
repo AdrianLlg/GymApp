@@ -29,36 +29,33 @@
                             HorizontalOptions="EndAndExpand"
                             VerticalOptions="Center">
                         </ImageButton>
-                        <BoxView HeightRequest="2" Color="White" Margin="0,0,0,80"  />
-                        <StackLayout Spacing="30"
+                    </StackLayout>
+                    <BoxView HeightRequest="2" Color="White" Margin="0,0,0,100"  />
+                    <StackLayout Spacing="30"
                              VerticalOptions="Start">
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
-                                <Frame HasShadow="False" CornerRadius="10" Padding="2" BorderColor="White" BackgroundColor="Transparent">
-                                    <Frame
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
+                            <Frame HasShadow="False" CornerRadius="10" Padding="2" BorderColor="White" BackgroundColor="Transparent">
+                                <Frame
                                         HorizontalOptions="Center" 
-                                        HeightRequest="70" 
-                                        WidthRequest="125"
+                                        HeightRequest="50" 
+                                        WidthRequest="100"
                                         BorderColor="White" 
                                         BackgroundColor="#1f1f1f">
-
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label
+                                    <Label
                                                 Text="Agendas"
                                                 HorizontalOptions="Center"
                                                 VerticalOptions="Center"
                                                 TextColor="White"
                                                 FontSize="15"
                                                 BackgroundColor="Transparent">
-                                            </Label>
-                                        </StackLayout>
-                                        <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer
+                                    </Label>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
                                                 Tapped="TapGestureRecognizer_Tapped">
-                                            </TapGestureRecognizer>
-                                        </Frame.GestureRecognizers>
-                                    </Frame>
+                                        </TapGestureRecognizer>
+                                    </Frame.GestureRecognizers>
                                 </Frame>
-                            </StackLayout>
+                            </Frame>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>

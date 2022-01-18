@@ -51,10 +51,6 @@
                          Text="Regístrate"  Clicked="Handle_Clicked"                         
                          BackgroundColor="#000814"
                          HorizontalOptions="FillAndExpand"/>
-
-                <Label Text="Forgot password" 
-                        HorizontalOptions="Center" 
-                        TextColor="{StaticResource primary}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
