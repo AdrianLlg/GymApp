@@ -83,16 +83,16 @@ namespace GymApp.Helpers
             set => AppSettings.AddOrUpdateValue(nameof(FechaNacimiento), value);
         }
 
-        public static DateTime FechaInicioMembresia
+        public static string FechaInicioMembresia
         {
-            get => AppSettings.GetValueOrDefault(nameof(FechaInicioMembresia), new DateTime());
+            get => AppSettings.GetValueOrDefault(nameof(FechaInicioMembresia), string.Empty);
 
             set => AppSettings.AddOrUpdateValue(nameof(FechaInicioMembresia), value);
         }
 
-        public static DateTime FechaFinMembresia
+        public static string FechaFinMembresia
         {
-            get => AppSettings.GetValueOrDefault(nameof(FechaFinMembresia), new DateTime());
+            get => AppSettings.GetValueOrDefault(nameof(FechaFinMembresia), string.Empty);
 
             set => AppSettings.AddOrUpdateValue(nameof(FechaFinMembresia), value);
         }

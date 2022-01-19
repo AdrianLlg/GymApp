@@ -1,6 +1,8 @@
-﻿using GymApp.Services;
+﻿using GymApp.Models.Membresias;
+using GymApp.Services;
 using GymApp.Views;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -70,6 +72,9 @@ namespace GymApp
             Helpers.Settings.IsLoged = false;
             Helpers.Settings.PersonaID = 0;
             Helpers.Settings.RoleID = 0;
+            Helpers.Settings.MembresiasActivas = new List<MembresiaContent>();
+            Helpers.Settings.FechaInicioMembresia = string.Empty;
+            Helpers.Settings.FechaFinMembresia = string.Empty;
 
             MainPage = new NavigationPage(new Login());
         }

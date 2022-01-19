@@ -100,13 +100,16 @@ namespace GymApp
                     membership.fechaFinMembresiaDate = fechaFin;
                 }
 
-                activeMemberships = activeMemberships.OrderBy(x => x.fechaInicioMembresiaDate).ToList();
 
-                Helpers.Settings.FechaInicioMembresia = activeMemberships.Select(x => x.fechaInicioMembresiaDate).First();
+                activeMemberships = activeMemberships.OrderBy(x => x.fechaInicioMembresiaDate).ToList();
+                var dateI = activeMemberships.Select(x => x.fechaInicioMembresiaDate).First();
+
+                Helpers.Settings.FechaInicioMembresia = dateI.ToString("yyyy-MM-dd HH:mm:ss");
 
                 activeMemberships = activeMemberships.OrderByDescending(x => x.fechaFinMembresiaDate).ToList();
+                var dateF = activeMemberships.Select(x => x.fechaFinMembresiaDate).First();
 
-                Helpers.Settings.FechaFinMembresia = activeMemberships.Select(x => x.fechaFinMembresiaDate).First();
+                Helpers.Settings.FechaFinMembresia = dateF.ToString("yyyy-MM-dd HH:mm:ss");
 
             }
 

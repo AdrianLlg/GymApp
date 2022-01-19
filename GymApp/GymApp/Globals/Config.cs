@@ -6,7 +6,7 @@ namespace GymApp.Globals
 {
     public class Config
     {
-        public static string BaseUrl = "http://2429-186-69-101-83.ngrok.io";
+        public static string BaseUrl = "http://d152-186-69-101-83.ngrok.io";
         public static string ApiLogin = $"{BaseUrl}/api/Login";
         public static string ApiRegistro = $"{BaseUrl}/api/CRUDRegistroAdmin";
         public static string ApiMembresias = $"{BaseUrl}/api/MembresiasUsuario";

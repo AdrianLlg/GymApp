@@ -18,6 +18,9 @@ namespace GymApp.Views
     {
         public ICommand DayTappedCommand => new Command<DateTime>(async (date) => await DayClick(date, calendar));
 
+        public DateTime fechaInicio;
+        public DateTime fechaFin;
+
         public Schedules()
         {
             InitializeComponent();
@@ -39,9 +42,9 @@ namespace GymApp.Views
                     }
                 }
 
-                if (DateTime.Now >= Helpers.Settings.FechaInicioMembresia && DateTime.Now <= Helpers.Settings.FechaFinMembresia)
+                if (DateTime.Now >= fechaInicio && DateTime.Now <= fechaFin)
                 {
-                    if (date.Date < Helpers.Settings.FechaInicioMembresia.Date  || date.Date > Helpers.Settings.FechaFinMembresia.Date)
+                    if (date.Date < fechaInicio.Date  || date.Date > fechaFin.Date)
                     {
                         await DisplayAlert("Alerta", "No se permite agendar sesiones fuera del rango de la duración de su(s) membresía(s). Lo sentimos!", "Ok");
                         return;
@@ -92,6 +95,10 @@ namespace GymApp.Views
 
         private void CalendarSettings()
         {
+
+            fechaInicio = DateTime.ParseExact(Helpers.Settings.FechaInicioMembresia, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+            fechaFin = DateTime.ParseExact(Helpers.Settings.FechaFinMembresia, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+
             CultureInfo cultureEC = new CultureInfo("es-EC", false);
             calendar.Culture = cultureEC;
 
