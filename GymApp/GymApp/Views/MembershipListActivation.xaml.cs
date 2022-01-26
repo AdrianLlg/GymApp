@@ -27,6 +27,8 @@ namespace GymApp.Views
 
                 if (response != null)
                 {
+                    response = response.Where(x => x.estadoRegistro == "A").ToList();
+
                     listviewMembresias.ItemsSource = response;
                 }
                 else

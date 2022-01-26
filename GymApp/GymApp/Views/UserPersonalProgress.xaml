@@ -43,7 +43,7 @@
                 </Label>
 
                 <Label
-                    Text="Antecendentes Médicos:"
+                    Text="Antecedentes Médicos:"
                     FontSize="18"
                     FontAttributes="Bold"
                     TextColor="Black"

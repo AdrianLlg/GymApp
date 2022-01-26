@@ -144,7 +144,7 @@
                                             FontSize="15">
                                             </Label>
                                             <Label
-                                            Text="Medicion de Brazos: "
+                                            Text="Medición de Brazos: "
                                             x:Name="MedicionBrazosLabel1"
                                             FontSize="15"
                                             FontAttributes="Bold"
@@ -157,7 +157,7 @@
                                             FontSize="15">
                                             </Label>
                                             <Label
-                                            Text="Medicion de Pecho: "
+                                            Text="Medición de Pecho: "
                                             x:Name="MedicionPechoLabel1"
                                             FontSize="15"
                                             FontAttributes="Bold"
@@ -170,7 +170,7 @@
                                             FontSize="15">
                                             </Label>
                                             <Label
-                                            Text="Medicion de Espalda: "
+                                            Text="Medición de Espalda: "
                                             x:Name="MedicionEspaldaLabel1"
                                             FontSize="15"
                                             FontAttributes="Bold"
@@ -183,7 +183,7 @@
                                             FontSize="15">
                                             </Label>
                                             <Label
-                                            Text="Medicion de Piernas: "
+                                            Text="Medición de Piernas: "
                                             x:Name="MedicionPiernasLabel1"
                                             FontSize="15"
                                             FontAttributes="Bold"
@@ -196,7 +196,7 @@
                                             FontSize="15">
                                             </Label>
                                             <Label
-                                            Text="Medicion de Cintura: "
+                                            Text="Medición de Cintura: "
                                             x:Name="MedicionCinturaLabel1"
                                             FontSize="15"
                                             FontAttributes="Bold"
@@ -209,7 +209,7 @@
                                             FontSize="15">
                                             </Label>
                                             <Label
-                                            Text="Medicion de Cuello: "
+                                            Text="Medición de Cuello: "
                                             x:Name="MedicionCuelloLabel1"
                                             FontSize="15"
                                             FontAttributes="Bold"

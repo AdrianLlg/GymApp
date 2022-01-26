@@ -20,7 +20,7 @@ namespace GymApp.Models.Membresias
         public string fechaPago { get; set; }
         public string fechaLimite { get; set; }
         public string estado { get; set; }
-
+        public string estadoMembresia { get; set; }
         public DateTime fechaInicioMembresiaDate { get; set; }
         public DateTime fechaFinMembresiaDate { get; set; }
         public DateTime fechaPagoMembresiaDate { get; set; }

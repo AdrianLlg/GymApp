@@ -53,6 +53,11 @@ namespace GymApp.Views
                     solButton.IsVisible = false;
                 }
 
+                if (item.estadoMembresia.Equals("I"))
+                {
+                    solButton.IsEnabled = false;
+                }
+
                 collectionViewDisciplines.ItemsSource = new ObservableCollection<DisciplinasMembresiasPersona>(item.disciplinasMemb);
             }
             catch (Exception ex)

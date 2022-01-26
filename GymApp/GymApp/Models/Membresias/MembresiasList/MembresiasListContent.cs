@@ -11,7 +11,7 @@ namespace GymApp.Models.Membresias.MembresiasList
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public string Periodicidad { get; set; }
-
+        public string estadoRegistro { get; set; }
         public List<MembresiasListDisciplines> membresiaDisciplinas { get; set; }
     }
 }
