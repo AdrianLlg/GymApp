@@ -47,7 +47,7 @@ namespace GymApp.Views.Instructor
                     FechaCreacion = DateTime.Today.ToString("yyyy-MM-dd"),
                     fichaPersonaID = fichaPersonaID,
                     ProfesorID = Helpers.Settings.PersonaID,
-                    DiciplinaID = disciplinaID,
+                    DisciplinaID = disciplinaID,
                     Peso = decimal.Parse(pesoEntry.Text),
                     Altura = decimal.Parse(estaturaEntry.Text),
                     IndiceMasaMuscular = decimal.Parse(masaMuscularEntry.Text),

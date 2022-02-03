@@ -11,7 +11,7 @@ namespace GymApp.Models.Instructor.RegistroFichaEntrenamiento
         public string FechaCreacion { get; set; }
         public int fichaPersonaID { get; set; }
         public int ProfesorID { get; set; }
-        public int DiciplinaID { get; set; }
+        public int DisciplinaID { get; set; }
         public decimal Altura { get; set; }
         public decimal Peso { get; set; }
         public decimal IndiceMasaMuscular { get; set; }
