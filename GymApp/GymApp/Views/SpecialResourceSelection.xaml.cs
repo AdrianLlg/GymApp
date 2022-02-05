@@ -107,6 +107,10 @@ namespace GymApp.Views
                         {
                             await DisplayAlert("Alerta", "No se puede anular la inscripción debido a que ha superado la hora permitida para cancelar su sesion.", "Ok");
                         }
+                        else
+                        {
+                            await DisplayAlert("Alerta", "Ocurrió un error al intentar realizar la inscripción, por favor, inténtenlo más tarde.", "Ok");
+                        }
                     }
                 }
                 else
